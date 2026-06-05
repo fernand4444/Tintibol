@@ -7,6 +7,10 @@ public class PlayerControler : MonoBehaviour
 {
     public int maxLP = 100;
     private int _currentLP;
+    private float _lastDamageTime = -Mathf.Infinity;
+    public float damageCooldown = 3f;
+
+    public Barradevida healthBar;
 
     public float velocidade = 10f;
     public float forcaPulo = 10f;
@@ -26,6 +30,10 @@ public class PlayerControler : MonoBehaviour
         _animator = gameObject.GetComponent<Animator>();
 
         _currentLP = maxLP;
+        if (healthBar != null)
+        {
+            healthBar.Initialize(maxLP, _currentLP);
+        }
     }
 
      private void KillPlayer()
@@ -44,11 +52,22 @@ public class PlayerControler : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (Time.time - _lastDamageTime < damageCooldown)
+            return;
+
+        _lastDamageTime = Time.time;
+
         _currentLP -= amount;
         if (_currentLP < 0)
         {
             _currentLP = 0;
         }
+
+        if (healthBar != null)
+        {
+            healthBar.SetHealth(_currentLP);
+        }
+
         KillPlayer();
     }
 

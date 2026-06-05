@@ -16,9 +16,9 @@ public class Damage : MonoBehaviour
             {
                 int amount = 0;
 
-                if (gameObject.CompareTag("Enemy"))
+                if (gameObject.CompareTag("HitKill"))
                 {
-                    amount = 10;
+                    amount = 999999;
                 }
                 else if (gameObject.CompareTag("obstaculo"))
                 {
