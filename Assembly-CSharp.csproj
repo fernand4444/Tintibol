@@ -64,6 +64,7 @@
     <Compile Include="Assets\Códigos\M.I. Manager.cs" />
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
+    <Compile Include="Assets\Códigos\Coletavel.cs" />
     <Compile Include="Assets\Códigos\Damage.cs" />
     <Compile Include="Assets\Códigos\HealthBar.cs" />
   </ItemGroup>
