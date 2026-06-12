@@ -130,7 +130,7 @@ public class PlayerControler : MonoBehaviour
                 return;
             }
 
-        _animator.SetBool("Andando", noChao);
-        _animator.SetBool("Pulando", noChao);
+        _animator.SetBool("Andando", andando);
+        _animator.SetBool("Pulando", Input.GetKey(KeyCode.UpArrow) && !noChao);
     }
 }
