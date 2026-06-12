@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 153174a34071b3a4f8c39025a61c250b
+guid: ce2fcf95fb7885e4f86f40e693b1d6b8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1368532113427563698
-    second: pulando11_0
+      213: -6603506652430317434
+    second: pulando15_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pulando11_0
+      name: pulando15_0
       rect:
         serializedVersion: 2
-        x: 9
-        y: 3
-        width: 596
-        height: 1033
+        x: 17
+        y: 13
+        width: 862
+        height: 471
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e4b7f6b2b4ff10de0800000000000000
-      internalID: -1368532113427563698
+      spriteID: 68846fdbfa1ab54a0800000000000000
+      internalID: -6603506652430317434
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pulando11_0: -1368532113427563698
+      pulando15_0: -6603506652430317434
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

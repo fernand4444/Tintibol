@@ -7,6 +7,7 @@ TagManager:
   - chao
   - Enemy
   - obstaculo
+  - HitKill
   layers:
   - Default
   - TransparentFX
