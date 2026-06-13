@@ -142,10 +142,10 @@ TextureImporter:
       name: pulando8_0
       rect:
         serializedVersion: 2
-        x: 11
-        y: 9
-        width: 699
-        height: 792
+        x: 4
+        y: 0
+        width: 700
+        height: 786
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
