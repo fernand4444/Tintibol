@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c939a8d7ba58f104d8b309c324df9e94
+guid: 491b6a616c7125941be2ec240737f926
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1882631982201937449
-    second: cenario, chao metade 2_0
+      213: 672972278170920965
+    second: chao_oficial-removebg-preview (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cenario, chao metade 2_0
+      name: chao_oficial-removebg-preview (1)_0
       rect:
         serializedVersion: 2
-        x: 2263
-        y: 544
-        width: 847
-        height: 729
+        x: 48
+        y: 36
+        width: 789
+        height: 245
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 92e9fed20d3702a10800000000000000
-      internalID: 1882631982201937449
+      spriteID: 5082010b8b0e65900800000000000000
+      internalID: 672972278170920965
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cenario, chao metade 2_0: 1882631982201937449
+      chao_oficial-removebg-preview (1)_0: 672972278170920965
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 49817f1ed29122c4eb6d7e6e9fb1aab8
+guid: 3be61ba9d2d12b84fb957809653eae61
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1267951958619129736
-    second: cenario, chao metade_0
+      213: 8689255376120493028
+    second: espinho 5_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cenario, chao metade_0
+      name: espinho 5_0
       rect:
         serializedVersion: 2
-        x: 1056
-        y: 544
-        width: 2054
-        height: 729
+        x: 34
+        y: 69
+        width: 799
+        height: 127
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88701c5a69ba89110800000000000000
-      internalID: 1267951958619129736
+      spriteID: 4e3b0581abf669870800000000000000
+      internalID: 8689255376120493028
       vertices: []
       indices: 
       edges: []
@@ -174,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cenario, chao metade_0: 1267951958619129736
+      espinho 5_0: 8689255376120493028
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
