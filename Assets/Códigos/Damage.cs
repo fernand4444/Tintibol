@@ -16,6 +16,9 @@ public class Damage : MonoBehaviour
             {
                 int amount = 0;
 
+                bool applyKnockback = !gameObject.CompareTag("HitKill");
+                bool ignoreCooldown = gameObject.CompareTag("HitKill");
+
                 if (gameObject.CompareTag("HitKill")) 
                 {
                     amount = 999999;
@@ -29,7 +32,7 @@ public class Damage : MonoBehaviour
                     amount = damageAmount;
                 }
 
-                player.TakeDamage(amount);
+                player.TakeDamage(amount, applyKnockback, ignoreCooldown);
             }
         }
     }
