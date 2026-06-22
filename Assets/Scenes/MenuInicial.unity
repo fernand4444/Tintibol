@@ -756,7 +756,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7042847911465117151, guid: cad49b8de292e5d4e8eee5a768785df2, type: 3}
+  m_Sprite: {fileID: -2503868744502560566, guid: c464d230cbb22ff4eb854b63e97c3fa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -775,8 +775,8 @@ Transform:
   m_GameObject: {fileID: 679032281}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960.0058, y: -540.27185, z: 0}
-  m_LocalScale: {x: 5.388803, y: 3.3228931, z: 0.06387336}
+  m_LocalPosition: {x: -960.005, y: -539.737, z: 0}
+  m_LocalScale: {x: 2.7024322, y: 2.0451632, z: 0.040726293}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 165727309}
@@ -890,7 +890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: -0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082992392
@@ -1001,6 +1001,7 @@ MonoBehaviour:
   painelMenuInicial: {fileID: 679032281}
   painelCutscene: {fileID: 1391748230}
   painelJogo: {fileID: 507456977}
+  videoPlayer: {fileID: 0}
 --- !u!4 &1407356265
 Transform:
   m_ObjectHideFlags: 0
@@ -1044,14 +1045,14 @@ RectTransform:
   m_GameObject: {fileID: 1464165961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.4291446, y: 4.681284, z: 3.3141837}
+  m_LocalScale: {x: 3.6091177, y: 4.926974, z: 3.4881232}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 165727309}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -38.1}
+  m_AnchoredPosition: {x: 0, y: -99}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1464165963

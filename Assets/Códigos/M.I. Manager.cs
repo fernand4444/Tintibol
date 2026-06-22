@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class MPManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class MPManager : MonoBehaviour
     [SerializeField] private GameObject painelMenuInicial;
     [SerializeField] private GameObject painelCutscene;
     [SerializeField] private GameObject painelJogo;
+    [SerializeField] private VideoPlayer videoPlayer;
 
     public void Jogar()
     {
@@ -19,6 +21,32 @@ public class MPManager : MonoBehaviour
     {
         painelMenuInicial.SetActive(false);
         painelCutscene.SetActive(true);
+    }
+
+    private void Start()
+    {
+        if (videoPlayer == null && painelCutscene != null)
+        {
+            videoPlayer = painelCutscene.GetComponentInChildren<VideoPlayer>();
+        }
+
+        if (videoPlayer != null)
+        {
+            videoPlayer.loopPointReached += OnVideoEnd;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (videoPlayer != null)
+        {
+            videoPlayer.loopPointReached -= OnVideoEnd;
+        }
+    }
+
+    private void OnVideoEnd(VideoPlayer vp)
+    {
+        SceneManager.LoadScene("Jogo");
     }
 
     public void Jogo()

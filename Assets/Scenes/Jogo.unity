@@ -2274,7 +2274,8 @@ Transform:
   m_LocalPosition: {x: 31.5, y: 14.8, z: -26.394934}
   m_LocalScale: {x: 4.636269, y: 2.6394935, z: 2.6394937}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1924909981}
   m_Father: {fileID: 819185611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &524883045
@@ -3100,7 +3101,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9012390739385127100, guid: 231480008adfa184f8be65659337cdeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3379,7 +3380,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9012390739385127100, guid: 231480008adfa184f8be65659337cdeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3514,7 +3515,6 @@ RectTransform:
   m_LocalScale: {x: 0.40765545, y: 0.36820495, z: 1.0520141}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1924909981}
   - {fileID: 519420032}
   m_Father: {fileID: 507456978}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4280,7 +4280,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7997562382746173531, guid: 200b7ebd01082f843b764c0b61038f6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4720,7 +4720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -612, y: 290}
+  m_AnchoredPosition: {x: -699, y: 406}
   m_SizeDelta: {x: 299.7102, y: 108.1842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199281896
@@ -4956,6 +4956,7 @@ MonoBehaviour:
   painelMenuInicial: {fileID: 1425570328}
   painelCutscene: {fileID: 1391748230}
   painelJogo: {fileID: 507456977}
+  videoPlayer: {fileID: 0}
 --- !u!4 &1407356265
 Transform:
   m_ObjectHideFlags: 0
@@ -6654,7 +6655,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 9012390739385127100, guid: 231480008adfa184f8be65659337cdeb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6858,7 +6859,7 @@ GameObject:
   - component: {fileID: 1924909981}
   - component: {fileID: 1924909980}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Vida
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6932,11 +6933,11 @@ Transform:
   m_GameObject: {fileID: 1924909979}
   serializedVersion: 2
   m_LocalRotation: {x: -0.027634816, y: 0.001971977, z: 0.9996092, w: 0.003743993}
-  m_LocalPosition: {x: -9.085, y: 30.173, z: -11.9176}
-  m_LocalScale: {x: 0.9879004, y: -1.003248, z: 1.66077}
+  m_LocalPosition: {x: -9.619731, y: 10.305062, z: 5.4848914}
+  m_LocalScale: {x: 0.21380767, y: -0.3800727, z: 0.6286369}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 819185611}
+  m_Father: {fileID: 519420032}
   m_LocalEulerAnglesHint: {x: -0.238, y: -3.166, z: 179.577}
 --- !u!1 &1987970074
 GameObject:
@@ -7168,7 +7169,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7997562382746173531, guid: 200b7ebd01082f843b764c0b61038f6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
