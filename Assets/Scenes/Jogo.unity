@@ -1372,7 +1372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   maxLP: 50
-  damage: 10
+  damage: 20
   moveSpeed: 2.5
   useTransform: 1
   shouldFlip: 1
@@ -4720,7 +4720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -699, y: 406}
+  m_AnchoredPosition: {x: -635, y: 356}
   m_SizeDelta: {x: 299.7102, y: 108.1842}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199281896
@@ -4744,10 +4744,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 0, b: 0, a: 1}
-    m_HighlightedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 0, b: 0, a: 1}
-    m_SelectedColor: {r: 1, g: 0, b: 0, a: 1}
+    m_NormalColor: {r: 0.040607214, g: 1, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.3486873, g: 1, b: 0, a: 1}
+    m_PressedColor: {r: 1, g: 0.95084643, b: 0, a: 1}
+    m_SelectedColor: {r: 1, g: 0.58190876, b: 0, a: 1}
     m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6933,7 +6933,7 @@ Transform:
   m_GameObject: {fileID: 1924909979}
   serializedVersion: 2
   m_LocalRotation: {x: -0.027634816, y: 0.001971977, z: 0.9996092, w: 0.003743993}
-  m_LocalPosition: {x: -9.619731, y: 10.305062, z: 5.4848914}
+  m_LocalPosition: {x: -9.08, y: 7.17, z: 5.51}
   m_LocalScale: {x: 0.21380767, y: -0.3800727, z: 0.6286369}
   m_ConstrainProportionsScale: 0
   m_Children: []
