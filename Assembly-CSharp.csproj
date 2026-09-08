@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Códigos\M.I. Manager.cs" />
+    <Compile Include="Assets\Códigos\PlataformaMóvel.cs" />
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
