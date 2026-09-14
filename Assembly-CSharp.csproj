@@ -64,6 +64,7 @@
     <Compile Include="Assets\Códigos\Coletavel.cs" />
     <Compile Include="Assets\Códigos\Damage.cs" />
     <Compile Include="Assets\Códigos\HealthBar.cs" />
+    <Compile Include="Assets\Códigos\Pause.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
