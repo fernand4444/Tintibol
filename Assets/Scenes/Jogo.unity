@@ -2172,7 +2172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.98823535, g: 0.43921572, b: 0.49411768, a: 1}
+  m_Color: {r: 0.735849, g: 0.31153864, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5303,11 +5303,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.040607214, g: 1, b: 0, a: 1}
-    m_HighlightedColor: {r: 0.3486873, g: 1, b: 0, a: 1}
-    m_PressedColor: {r: 1, g: 0.95084643, b: 0, a: 1}
-    m_SelectedColor: {r: 1, g: 0.58190876, b: 0, a: 1}
-    m_DisabledColor: {r: 1, g: 0, b: 0, a: 0.5019608}
+    m_NormalColor: {r: 0.7075472, g: 0.30974808, b: 0, a: 1}
+    m_HighlightedColor: {r: 0.754717, g: 0.42600217, b: 0, a: 1}
+    m_PressedColor: {r: 0.7735849, g: 0.46027815, b: 0, a: 1}
+    m_SelectedColor: {r: 0.7264151, g: 0.42160565, b: 0, a: 1}
+    m_DisabledColor: {r: 0.764151, g: 0.3797448, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7834,7 +7834,7 @@ GameObject:
   - component: {fileID: 1967897068}
   m_Layer: 0
   m_Name: chao_cortado-removebg-preview 1_0 (3)
-  m_TagString: Untagged
+  m_TagString: chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8245,11 +8245,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -1012.3
+      value: -907.7
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -554.05
+      value: -551.6
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -8263,6 +8263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6784404175223743528, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1261746173519611556, guid: 4bafbd588c944b74d9f7631ecd6882e0, type: 3}
     - target: {fileID: 7016159243629468048, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_Name
       value: Player

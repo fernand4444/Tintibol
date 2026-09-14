@@ -9,6 +9,27 @@ public class Pause : MonoBehaviour
     void Start()
     {
         telaPause.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PausarOuContinuar();
+        }
+    }
+
+    public void PausarOuContinuar()
+    {
+        if (jogoPausado)
+        {
+            ContinuarJogo();
+        }
+        else
+        {
+            PausarJogo();
+        }
     }
 
     public void PausarJogo()
