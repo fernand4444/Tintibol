@@ -61,10 +61,12 @@
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
     <Compile Include="Assets\Códigos\Checkpoint.cs" />
+    <Compile Include="Assets\Códigos\ItemImunidade.cs" />
     <Compile Include="Assets\Códigos\Coletavel.cs" />
     <Compile Include="Assets\Códigos\Damage.cs" />
     <Compile Include="Assets\Códigos\HealthBar.cs" />
     <Compile Include="Assets\Códigos\Pause.cs" />
+    <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
