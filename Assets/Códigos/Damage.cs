@@ -14,12 +14,23 @@ public class Damage : MonoBehaviour
             PlayerControler player = other.gameObject.GetComponent<PlayerControler>();
             if (player != null)
             {
+                // VERIFICA SE O JOGADOR ESTÁ COM O ESCUDO
+                ProtecaoJogador protecao = player.GetComponent<ProtecaoJogador>();
+
+                if (protecao != null && protecao.EstaProtegido())
+                {
+                    // Bloqueia o dano
+                    protecao.UsarProtecao();
+
+                    return;
+                }
+
                 int amount = 0;
 
                 bool applyKnockback = !gameObject.CompareTag("HitKill");
                 bool ignoreCooldown = gameObject.CompareTag("HitKill");
 
-                if (gameObject.CompareTag("HitKill")) 
+                if (gameObject.CompareTag("HitKill"))
                 {
                     amount = 999999;
                 }
@@ -41,12 +52,12 @@ public class Damage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

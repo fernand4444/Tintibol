@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class ItemImunidade : MonoBehaviour
 {
-    public GameObject luzProtecao;
+    public GameObject escudo;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (luzProtecao != null)
-                luzProtecao.SetActive(true);
+            ProtecaoJogador protecao = collision.gameObject.GetComponent<ProtecaoJogador>();
+
+            if (protecao != null)
+            {
+                protecao.AtivarProtecao();
+            }
 
             Destroy(gameObject);
         }
