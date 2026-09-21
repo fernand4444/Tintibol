@@ -12,6 +12,18 @@ public class PlayerControler : MonoBehaviour
 
     public Barradevida healthBar;
 
+    public void RecuperarVida(int quantidade)
+    {
+        _currentLP += quantidade;
+
+        if (_currentLP > maxLP)
+        {
+            _currentLP = maxLP;
+        }
+
+        healthBar.SetHealth(_currentLP);
+    }
+
     public float velocidade = 10f;
     public float forcaPulo = 10f;
     public float knockbackForce = 8f;
