@@ -51,7 +51,7 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-     private void KillPlayer()
+    private void KillPlayer()
     {
         if (_currentLP <= 0)
         {
@@ -60,9 +60,9 @@ public class PlayerControler : MonoBehaviour
             _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-       
+
         }
-        
+
     }
 
     public void TakeDamage(int amount, bool applyKnockback = true, bool ignoreCooldown = false)
@@ -160,12 +160,12 @@ public class PlayerControler : MonoBehaviour
             _rigidbody2D.AddForce(new Vector2(0, 1) * forcaPulo, ForceMode2D.Impulse);
             Debug.Log("Jump");
         }
-        
+
         if (_currentLP <= 0)
-            {
-                KillPlayer();
-                return;
-            }
+        {
+            KillPlayer();
+            return;
+        }
 
         _animator.SetBool("Andando", andando);
         _animator.SetBool("Pulando", Input.GetKey(KeyCode.UpArrow) && !noChao);
