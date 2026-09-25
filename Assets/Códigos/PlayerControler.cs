@@ -35,6 +35,11 @@ public class PlayerControler : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
+    private AudioSource _audioSource;
+
+    // Som do pulo
+    public AudioClip somPulo;
+
     private Vector2 _lastMoveDirection = Vector2.right;
 
     // Start is called before the first frame update
@@ -43,6 +48,7 @@ public class PlayerControler : MonoBehaviour
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
         _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         _animator = gameObject.GetComponent<Animator>();
+        _audioSource = gameObject.GetComponent<AudioSource>();
 
         _currentLP = maxLP;
         if (healthBar != null)
@@ -55,14 +61,11 @@ public class PlayerControler : MonoBehaviour
     {
         if (_currentLP <= 0)
         {
-
             //_rigidbody2D.bodyType = RigidbodyType2D.Static;
             _rigidbody2D.linearVelocity = new Vector2(0, _rigidbody2D.linearVelocity.y);
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
         }
-
     }
 
     public void TakeDamage(int amount, bool applyKnockback = true, bool ignoreCooldown = false)
@@ -94,6 +97,7 @@ public class PlayerControler : MonoBehaviour
     private void ApplyDamageKnockback()
     {
         Vector2 direction = _lastMoveDirection;
+
         if (direction == Vector2.zero)
         {
             if (_rigidbody2D.linearVelocity.x != 0)
@@ -112,7 +116,6 @@ public class PlayerControler : MonoBehaviour
         {
             noChao = true;
         }
-
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -121,7 +124,6 @@ public class PlayerControler : MonoBehaviour
         {
             noChao = false;
         }
-
     }
 
     // Update is called once per frame
@@ -158,6 +160,13 @@ public class PlayerControler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && noChao == true)
         {
             _rigidbody2D.AddForce(new Vector2(0, 1) * forcaPulo, ForceMode2D.Impulse);
+
+            // Toca o som do pulo
+            if (somPulo != null && _audioSource != null)
+            {
+                _audioSource.PlayOneShot(somPulo);
+            }
+
             Debug.Log("Jump");
         }
 
