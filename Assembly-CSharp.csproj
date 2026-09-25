@@ -70,7 +70,6 @@
     <Compile Include="Assets\Códigos\Pause.cs" />
     <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
-    <Compile Include="Assets\Códigos\AtaqueJogador.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

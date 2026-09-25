@@ -17,5 +17,20 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/cenas/fase 2.unity
     guid: aeee8a0e40b6f104a9c14bed6882b11a
+  - enabled: 1
+    path: Assets/cenas/fase 3.unity
+    guid: 98c9355d23fca6d40b609a572a960ba1
+  - enabled: 1
+    path: Assets/cenas/fase 4.unity
+    guid: 596434a1c3f19104987e0e4443fc9c3e
+  - enabled: 1
+    path: Assets/cenas/fase 5.unity
+    guid: df3330d312954e94790d9e9fdf1fba71
+  - enabled: 1
+    path: Assets/cenas/fase 6.unity
+    guid: 65acf6d01d74b764db5c544c5015693c
+  - enabled: 1
+    path: Assets/cenas/fase 7.unity
+    guid: fd73a99e378dd3a41be0beab396a3610
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
