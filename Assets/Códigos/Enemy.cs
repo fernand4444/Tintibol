@@ -5,6 +5,8 @@ public class EnemyController : MonoBehaviour
 {
     public int maxLP;
     public int damage;
+    [SerializeField] private int stompDamage = 1;
+    [SerializeField] private float stompBounce = 8f;
     public float moveSpeed;
     public bool useTransform;
     public bool shouldFlip;
@@ -113,24 +115,50 @@ public class EnemyController : MonoBehaviour
         );
     }
 
-    private void DealDamageToPlayer(Collision2D other)
+    private void DealDamageToPlayer(Collision2D other, bool isEntering)
     {
         if (!other.gameObject.CompareTag("Player"))
             return;
 
-        if (other.gameObject.TryGetComponent<PlayerControler>(out var player))
+        if (!other.gameObject.TryGetComponent<PlayerControler>(out var player))
+            return;
+
+        Rigidbody2D playerRigidbody = other.rigidbody;
+        bool playerIsFalling = playerRigidbody == null || playerRigidbody.linearVelocity.y <= 0f;
+        bool playerLandedOnTop = false;
+
+        for (int i = 0; i < other.contactCount; i++)
         {
-            player.TakeDamage(damage);
+            if (other.GetContact(i).normal.y < -0.5f)
+            {
+                playerLandedOnTop = true;
+                break;
+            }
         }
+
+        if (playerLandedOnTop)
+        {
+            if (isEntering && playerIsFalling)
+            {
+                TakeDamage(stompDamage);
+
+                if (playerRigidbody != null)
+                    playerRigidbody.linearVelocity = new Vector2(playerRigidbody.linearVelocity.x, stompBounce);
+            }
+
+            return;
+        }
+
+        player.TakeDamage(damage);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        DealDamageToPlayer(other);
+        DealDamageToPlayer(other, true);
     }
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        DealDamageToPlayer(other);
+        DealDamageToPlayer(other, false);
     }
 }
