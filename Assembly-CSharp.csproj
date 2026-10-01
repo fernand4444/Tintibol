@@ -62,6 +62,7 @@
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
     <Compile Include="Assets\Códigos\VidaInimigo.cs" />
     <Compile Include="Assets\Códigos\AudioManager.cs" />
+    <Compile Include="Assets\Códigos\BolinhaColetavel.cs" />
     <Compile Include="Assets\Códigos\Checkpoint.cs" />
     <Compile Include="Assets\Códigos\ItemImunidade.cs" />
     <Compile Include="Assets\Códigos\Coletavel.cs" />
