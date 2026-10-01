@@ -510,6 +510,7 @@ MonoBehaviour:
   knockbackUpwardFactor: 0.75
   noChao: 0
   andando: 0
+  somPulo: {fileID: 0}
 --- !u!60 &6113835915739792709
 PolygonCollider2D:
   m_ObjectHideFlags: 0
