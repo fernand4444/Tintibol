@@ -66,6 +66,7 @@
     <Compile Include="Assets\Códigos\Checkpoint.cs" />
     <Compile Include="Assets\Códigos\ItemImunidade.cs" />
     <Compile Include="Assets\Códigos\Coletavel.cs" />
+    <Compile Include="Assets\Códigos\ParallaxBackground.cs" />
     <Compile Include="Assets\Códigos\ContadorEstrelas.cs" />
     <Compile Include="Assets\Códigos\Damage.cs" />
     <Compile Include="Assets\Códigos\HealthBar.cs" />
