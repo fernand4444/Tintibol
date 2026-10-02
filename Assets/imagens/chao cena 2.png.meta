@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 92add1e0900c56b48be0da8fab6d4dc9
+guid: bd78e362ca1643e479bc301f588db336
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3300635594003830098
-    second: ChatGPT_Image_1_10_2026__18_56_02-removebg-preview_0
+      213: -2531163399042799366
+    second: chao cena 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,12 +37,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ChatGPT_Image_1_10_2026__18_56_02-removebg-preview_0
+      name: chao cena 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 22
-        width: 866
-        height: 251
+        x: 75
+        y: 1761
+        width: 1172
+        height: 189
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eaa246e2a69c132d0800000000000000
-      internalID: -3300635594003830098
+      spriteID: af8659b9c408fdcd0800000000000000
+      internalID: -2531163399042799366
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ChatGPT_Image_1_10_2026__18_56_02-removebg-preview_0: -3300635594003830098
+      chao cena 2_0: -2531163399042799366
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
