@@ -2089,14 +2089,6 @@ PrefabInstance:
       value: "cora\xE7ao de vida"
       objectReference: {fileID: 0}
     - target: {fileID: 6469891725841322256, guid: 2e10c6c36d48dc949bdc92fa58e58d67, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1224186
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469891725841322256, guid: 2e10c6c36d48dc949bdc92fa58e58d67, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.109199554
-      objectReference: {fileID: 0}
-    - target: {fileID: 6469891725841322256, guid: 2e10c6c36d48dc949bdc92fa58e58d67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.518
       objectReference: {fileID: 0}
@@ -9676,11 +9668,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7910317221407511770, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 59.67
+      value: 59.5
       objectReference: {fileID: 0}
     - target: {fileID: 7910317221407511770, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -67.31
+      value: -67.97
       objectReference: {fileID: 0}
     - target: {fileID: 7910317221407511770, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_LocalPosition.z
