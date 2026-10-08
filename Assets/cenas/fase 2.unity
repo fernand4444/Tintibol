@@ -7344,7 +7344,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &1050352891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10135,11 +10135,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 66.38
+      value: -59.14
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -14.37
+      value: -17.86
       objectReference: {fileID: 0}
     - target: {fileID: 356036390558194238, guid: 6fd60de91f1a17b48bb483935b640512, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
