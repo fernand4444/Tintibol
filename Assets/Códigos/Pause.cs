@@ -9,6 +9,7 @@ public class Pause : MonoBehaviour
     void Start()
     {
         telaPause.SetActive(false);
+        jogoPausado = false;
         Time.timeScale = 1f;
     }
 
@@ -37,6 +38,8 @@ public class Pause : MonoBehaviour
         jogoPausado = true;
         telaPause.SetActive(true);
         Time.timeScale = 0f;
+
+        Debug.Log("Pausando");
     }
 
     public void ContinuarJogo()
