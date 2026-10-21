@@ -57,6 +57,7 @@
     <Compile Include="Assets\Códigos\PlataformaMóvel.cs" />
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
+    <Compile Include="Assets\Códigos\DetectorEstaca.cs" />
     <Compile Include="Assets\Códigos\Respawn.cs" />
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="Assets\Códigos\ContadorEstrelas.cs" />
     <Compile Include="Assets\Códigos\Damage.cs" />
     <Compile Include="Assets\Códigos\HealthBar.cs" />
+    <Compile Include="Assets\Códigos\DestruirEstaca.cs" />
     <Compile Include="Assets\Códigos\Pause.cs" />
     <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
