@@ -60,6 +60,7 @@
     <Compile Include="Assets\Códigos\Respawn.cs" />
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
+    <Compile Include="Assets\Códigos\LuzPiscando.cs" />
     <Compile Include="Assets\Códigos\VidaInimigo.cs" />
     <Compile Include="Assets\Códigos\AudioManager.cs" />
     <Compile Include="Assets\Códigos\BolinhaColetavel.cs" />
