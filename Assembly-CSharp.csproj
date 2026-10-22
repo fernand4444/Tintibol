@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Códigos\M.I. Manager.cs" />
+    <Compile Include="Assets\Códigos\CheckpointManager.cs" />
     <Compile Include="Assets\Códigos\PlataformaMóvel.cs" />
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
     <Compile Include="Assets\Códigos\LuzPiscando.cs" />
+    <Compile Include="Assets\Códigos\PlataformaQueCai.cs" />
     <Compile Include="Assets\Códigos\VidaInimigo.cs" />
     <Compile Include="Assets\Códigos\AudioManager.cs" />
     <Compile Include="Assets\Códigos\BolinhaColetavel.cs" />
