@@ -59,6 +59,7 @@
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
     <Compile Include="Assets\Códigos\DetectorEstaca.cs" />
+    <Compile Include="Assets\Códigos\BaseAnimacao.cs" />
     <Compile Include="Assets\Códigos\Respawn.cs" />
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
