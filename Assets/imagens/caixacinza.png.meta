@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 07be3a3fa53f00f44ade10de3b7571c3
+guid: 1aabdad792df76944b37978801bd46d5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5412910156287300836
-    second: image (1)_0
+      213: -6304024974243114335
+    second: caixacinza_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image (1)_0
+      name: caixacinza_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 7680
-        height: 1080
+        x: 828
+        y: 1525
+        width: 646
+        height: 645
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c1b246544ea71e4b0800000000000000
-      internalID: -5412910156287300836
+      spriteID: 1a25c03afaa9388a0800000000000000
+      internalID: -6304024974243114335
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      image (1)_0: -5412910156287300836
+      caixacinza_0: -6304024974243114335
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
