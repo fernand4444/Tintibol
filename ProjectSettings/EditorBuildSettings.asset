@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/cenas/fasee 3.unity
     guid: 88ddd22e2ae2a234fa8458369956f144
   - enabled: 1
-    path: Assets/cenas/fasee 2.unity
-    guid: 10e71897cf9e9014293150b188fdf502
+    path: Assets/cenas/fase 2.1.unity
+    guid: 5ae384e36521aa945a7cbe802c3b1a52
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
