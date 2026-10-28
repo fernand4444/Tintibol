@@ -1817,7 +1817,7 @@ Transform:
   m_GameObject: {fileID: 366724024}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.56, y: -69.92, z: 0}
+  m_LocalPosition: {x: 11.56, y: -69.89, z: 0}
   m_LocalScale: {x: 3.5806944, y: 5.364271, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2728,8 +2728,8 @@ Transform:
   m_GameObject: {fileID: 403060410}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.39, y: -69.0609, z: 0}
-  m_LocalScale: {x: 1, y: 1.248781, z: 1}
+  m_LocalPosition: {x: -19.39, y: -69.1303, z: 0}
+  m_LocalScale: {x: 1, y: 1.4499596, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2941,7 +2941,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &456350710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7575,7 +7575,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.1873219, y: 0}
+  m_Offset: {x: 0.037975162, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -7585,7 +7585,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.7954435, y: 1}
+  m_Size: {x: 0.97923106, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &1428592629
 SpriteRenderer:
@@ -7637,7 +7637,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7656,7 +7656,7 @@ Transform:
   m_GameObject: {fileID: 1428592626}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.45, y: -65.4558, z: 0}
+  m_LocalPosition: {x: 3.06, y: -65.78, z: 0}
   m_LocalScale: {x: 0.6561, y: 5.4884844, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8784,7 +8784,7 @@ Transform:
   m_GameObject: {fileID: 1652254357}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.86, y: -69.91, z: 0}
+  m_LocalPosition: {x: -0.86, y: -69.83, z: 0}
   m_LocalScale: {x: 3.5806944, y: 5.364271, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9595,7 +9595,7 @@ Transform:
   m_GameObject: {fileID: 1887689746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.42, y: -65.79, z: -12.4836}
+  m_LocalPosition: {x: -32.38, y: -68.06, z: -12.4836}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9687,7 +9687,7 @@ Transform:
   m_GameObject: {fileID: 1901121782}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.22, y: -69.47, z: 0}
+  m_LocalPosition: {x: 52.25, y: -69.91, z: 0}
   m_LocalScale: {x: 3.5806944, y: 5.364271, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10894,7 +10894,7 @@ Transform:
   m_GameObject: {fileID: 6116318565723160563}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 21.42, y: -65.79, z: -12.4836}
+  m_LocalPosition: {x: -32.38, y: -68.06, z: -12.4836}
   m_LocalScale: {x: 0.43113786, y: 0.16650946, z: 2.7767847}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11062,11 +11062,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 21.42
+      value: -32.38
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -65.79
+      value: -68.06
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
