@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField] private int stompDamage = 1;
     [SerializeField] private float stompBounce = 8f;
+    [SerializeField] private float stompTopTolerance = 0.2f;
 
 
     public float moveSpeed;
@@ -23,8 +24,12 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float blinkHitDuration;
 
 
+
+
     [Header("Animation")]
     [SerializeField] private float deathAnimationDuration = 1f;
+
+
 
 
     private static readonly int MovingHash =
@@ -37,16 +42,11 @@ public class EnemyController : MonoBehaviour
 
     private Vector2 _initialPosition;
     private Vector2 _moveTarget;
-
-
     private bool _isReturning;
     private bool _isAlive;
-
-
+    private bool _hasStompedPlayer;
     private float _originalLocalScaleX;
     private int _currentLP;
-
-
     private Animator _animator;
     private Collider2D _collider2D;
     private AudioSource _audioSource;
@@ -130,7 +130,6 @@ public class EnemyController : MonoBehaviour
             (Vector3)(direction * moveSpeed * Time.deltaTime);
 
 
-        // Atualiza a animação de movimento.
         bool isMoving =
             moveSpeed > 0f &&
             Vector2.Distance(transform.position, destination) > 0.05f;
@@ -148,8 +147,7 @@ public class EnemyController : MonoBehaviour
 
 
     public void TakeDamage(int damage)
-    {
-        // Impede que o inimigo receba dano após morrer.
+    {        // Impede que o inimigo receba dano após morrer.
         if (!_isAlive)
             return;
 
@@ -174,7 +172,6 @@ public class EnemyController : MonoBehaviour
         _isAlive = false;
 
 
-        // Interrompe a animação de movimento.
         if (_animator != null)
         {
             _animator.SetBool(MovingHash, false);
@@ -182,12 +179,10 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        // Desativa a colisão para evitar novos danos.
         if (_collider2D != null)
             _collider2D.enabled = false;
 
 
-        // Aguarda a animação de morte antes de destruir o objeto.
         if (_animator != null)
             StartCoroutine(DestroyAfterDeath());
         else
@@ -220,57 +215,47 @@ public class EnemyController : MonoBehaviour
 
     private void DealDamageToPlayer(
         Collision2D other,
-        bool isEntering)
+        bool allowSideDamage)
     {
         if (!_isAlive)
             return;
 
 
-        if (!other.gameObject.CompareTag("Player"))
-            return;
-
-
-        if (!other.gameObject.TryGetComponent<PlayerControler>(
-                out var player))
+        PlayerControler player =
+            other.gameObject.GetComponentInParent<PlayerControler>();
+        if (player == null || _collider2D == null)
             return;
 
 
         Rigidbody2D playerRigidbody = other.rigidbody;
-
-
-        bool playerIsFalling =
-            playerRigidbody == null ||
-            playerRigidbody.linearVelocity.y <= 0f;
-
-
-        bool playerLandedOnTop = false;
+        bool contactIsAtTop = false;
+        float topLimit = _collider2D.bounds.max.y - stompTopTolerance;
 
 
         for (int i = 0; i < other.contactCount; i++)
         {
-            if (other.GetContact(i).normal.y < -0.5f)
+            if (other.GetContact(i).point.y >= topLimit)
             {
-                playerLandedOnTop = true;
+                contactIsAtTop = true;
                 break;
             }
         }
 
 
-        if (playerLandedOnTop)
+        if (contactIsAtTop)
         {
-            if (isEntering && playerIsFalling)
+            if (player.HasJumped &&
+                playerRigidbody != null &&
+                playerRigidbody.linearVelocity.y < 0f &&
+                !_hasStompedPlayer)
             {
+                _hasStompedPlayer = true;
+                player.ConsumeJump();
                 TakeDamage(stompDamage);
-
-
-                if (playerRigidbody != null)
-                {
-                    playerRigidbody.linearVelocity =
-                        new Vector2(
-                            playerRigidbody.linearVelocity.x,
-                            stompBounce
-                        );
-                }
+                playerRigidbody.linearVelocity = new Vector2(
+                    playerRigidbody.linearVelocity.x,
+                    Mathf.Max(playerRigidbody.linearVelocity.y, stompBounce)
+                );
             }
 
 
@@ -278,7 +263,8 @@ public class EnemyController : MonoBehaviour
         }
 
 
-        player.TakeDamage(damage);
+        if (allowSideDamage)
+            player.TakeDamage(damage);
     }
 
 
@@ -291,5 +277,12 @@ public class EnemyController : MonoBehaviour
     private void OnCollisionStay2D(Collision2D other)
     {
         DealDamageToPlayer(other, false);
+    }
+
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponentInParent<PlayerControler>() != null)
+            _hasStompedPlayer = false;
     }
 }

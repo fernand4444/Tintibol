@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
-
-
 public class PlayerControler : MonoBehaviour
 {
     public int maxLP = 100;
@@ -15,13 +11,9 @@ public class PlayerControler : MonoBehaviour
     public Barradevida healthBar;
 
 
-
-
     public void RecuperarVida(int quantidade)
     {
         _currentLP += quantidade;
-
-
 
 
         if (_currentLP > maxLP)
@@ -30,15 +22,11 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
         if (healthBar != null)
         {
             healthBar.SetHealth(_currentLP);
         }
     }
-
-
 
 
     public float velocidade = 10f;
@@ -57,26 +45,21 @@ public class PlayerControler : MonoBehaviour
     private AudioSource _audioSource;
 
 
-
-
-    // Som do pulo
     public AudioClip somPulo;
-
-
-
-
     private Vector2 _lastMoveDirection = Vector2.right;
+    private bool _hasJumped;
 
 
+    public bool HasJumped => _hasJumped;
 
 
-    // Impede que a cena seja recarregada repetidamente durante a morte.
+    public void ConsumeJump()
+    {
+        _hasJumped = false;
+    }
+
+
     private bool _isReloading = false;
-
-
-
-
-    // Start
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
@@ -85,11 +68,7 @@ public class PlayerControler : MonoBehaviour
         _audioSource = gameObject.GetComponent<AudioSource>();
 
 
-
-
         _currentLP = maxLP;
-
-
 
 
         if (healthBar != null)
@@ -98,16 +77,11 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
-        // Verifica se existe checkpoint salvo nesta fase.
         if (CheckpointManager.temCheckpoint &&
             CheckpointManager.faseCheckpoint ==
             SceneManager.GetActiveScene().name)
         {
             transform.position = CheckpointManager.ultimaPosicao;
-
-
 
 
             if (_rigidbody2D != null)
@@ -116,13 +90,9 @@ public class PlayerControler : MonoBehaviour
             }
 
 
-
-
             Debug.Log("Jogador retornou ao checkpoint!");
         }
     }
-
-
 
 
     private void KillPlayer()
@@ -132,8 +102,6 @@ public class PlayerControler : MonoBehaviour
             _isReloading = true;
 
 
-
-
             if (_rigidbody2D != null)
             {
                 _rigidbody2D.linearVelocity =
@@ -141,15 +109,11 @@ public class PlayerControler : MonoBehaviour
             }
 
 
-
-
             SceneManager.LoadScene(
                 SceneManager.GetActiveScene().name
             );
         }
     }
-
-
 
 
     public void TakeDamage(
@@ -164,12 +128,8 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
         _lastDamageTime = Time.time;
         _currentLP -= amount;
-
-
 
 
         if (_currentLP < 0)
@@ -178,14 +138,10 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
         if (healthBar != null)
         {
             healthBar.SetHealth(_currentLP);
         }
-
-
 
 
         if (applyKnockback && amount > 0)
@@ -194,19 +150,13 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
         KillPlayer();
     }
-
-
 
 
     private void ApplyDamageKnockback()
     {
         Vector2 direction = _lastMoveDirection;
-
-
 
 
         if (direction == Vector2.zero)
@@ -225,19 +175,13 @@ public class PlayerControler : MonoBehaviour
         }
 
 
-
-
         Vector2 knockbackDirection =
             new Vector2(-direction.x, knockbackUpwardFactor).normalized;
-
-
 
 
         _rigidbody2D.linearVelocity =
             knockbackDirection * knockbackForce;
     }
-
-
 
 
     void OnCollisionStay2D(Collision2D collision)
@@ -249,6 +193,14 @@ public class PlayerControler : MonoBehaviour
     }
 
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("chao"))
+        {
+            noChao = true;
+            _hasJumped = false;
+        }
+    }
 
 
     void OnCollisionExit2D(Collision2D collision)
@@ -260,9 +212,6 @@ public class PlayerControler : MonoBehaviour
     }
 
 
-
-
-    // Update
     void Update()
     {
         andando = false;
@@ -277,11 +226,7 @@ public class PlayerControler : MonoBehaviour
             _lastMoveDirection = Vector2.left;
 
 
-
-
             Debug.Log("Left");
-
-
 
 
             if (noChao == true)
@@ -300,11 +245,7 @@ public class PlayerControler : MonoBehaviour
             _lastMoveDirection = Vector2.right;
 
 
-
-
             Debug.Log("Right");
-
-
 
 
             if (noChao == true)
@@ -319,6 +260,7 @@ public class PlayerControler : MonoBehaviour
              Input.GetKeyDown(KeyCode.Space)) &&
             noChao)
         {
+            _hasJumped = true;
             _rigidbody2D.AddForce(
                 Vector2.up * forcaPulo,
                 ForceMode2D.Impulse
@@ -343,8 +285,6 @@ public class PlayerControler : MonoBehaviour
 
 
         _animator.SetBool("Andando", andando);
-
-
         _animator.SetBool("Pulando", !noChao);
     }
 }
