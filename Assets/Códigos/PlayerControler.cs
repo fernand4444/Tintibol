@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+
 public class PlayerControler : MonoBehaviour
 {
     public int maxLP = 100;
@@ -37,8 +39,6 @@ public class PlayerControler : MonoBehaviour
     public bool andando = false;
 
 
-
-
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
@@ -60,6 +60,13 @@ public class PlayerControler : MonoBehaviour
 
 
     private bool _isReloading = false;
+
+
+    // ANIMAÇÃO DE CUSPIR
+    private bool _isSpitting = false;
+    public float tempoCuspindo = 1f;
+
+
     void Start()
     {
         _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
@@ -92,6 +99,35 @@ public class PlayerControler : MonoBehaviour
 
             Debug.Log("Jogador retornou ao checkpoint!");
         }
+    }
+
+
+    // FUNÇÃO PARA CUSPIR
+    public void Cuspir()
+    {
+        if (_isSpitting || _animator == null)
+            return;
+
+
+        StartCoroutine(AnimacaoCuspir());
+    }
+
+
+    private IEnumerator AnimacaoCuspir()
+    {
+        _isSpitting = true;
+
+
+        _animator.SetBool("cuspindo", true);
+
+
+        yield return new WaitForSeconds(tempoCuspindo);
+
+
+        _animator.SetBool("cuspindo", false);
+
+
+        _isSpitting = false;
     }
 
 
@@ -217,6 +253,7 @@ public class PlayerControler : MonoBehaviour
         andando = false;
 
 
+        // MOVIMENTAÇÃO PARA ESQUERDA
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(-velocidade * Time.deltaTime, 0, 0);
@@ -236,6 +273,7 @@ public class PlayerControler : MonoBehaviour
         }
 
 
+        // MOVIMENTAÇÃO PARA DIREITA
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(velocidade * Time.deltaTime, 0, 0);
@@ -255,12 +293,15 @@ public class PlayerControler : MonoBehaviour
         }
 
 
+        // PULO
         if ((Input.GetKeyDown(KeyCode.UpArrow) ||
              Input.GetKeyDown(KeyCode.W) ||
              Input.GetKeyDown(KeyCode.Space)) &&
             noChao)
         {
             _hasJumped = true;
+
+
             _rigidbody2D.AddForce(
                 Vector2.up * forcaPulo,
                 ForceMode2D.Impulse
@@ -274,6 +315,14 @@ public class PlayerControler : MonoBehaviour
 
 
             Debug.Log("Jump");
+        }
+
+
+        // ATIRAR / CUSPIR COM L OU Z
+        if (Input.GetKeyDown(KeyCode.L) ||
+            Input.GetKeyDown(KeyCode.Z))
+        {
+            Cuspir();
         }
 
 
