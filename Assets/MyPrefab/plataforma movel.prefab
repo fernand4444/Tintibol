@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6365985620845854901}
   - component: {fileID: 3907806187741645182}
   m_Layer: 0
-  m_Name: Square (1)
+  m_Name: plataforma movel
   m_TagString: chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7d5295422b15a94c9836d38b75ac72d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlataformaMovel
-  pontoDestino: {x: 4, y: 0}
+  direcao: {x: 1, y: 0}
+  distancia: 3
   velocidade: 2
 --- !u!50 &6365985620845854901
 Rigidbody2D:

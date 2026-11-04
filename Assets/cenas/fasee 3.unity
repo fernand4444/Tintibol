@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 49050430}
   m_Layer: 0
   m_Name: chao cenario 3_0 (27)
-  m_TagString: Untagged
+  m_TagString: chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16503,6 +16503,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
+      propertyPath: direcao.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
+      propertyPath: direcao.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
       propertyPath: pontoDestino.x
       value: 0
       objectReference: {fileID: 0}
@@ -20494,6 +20502,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
+      propertyPath: direcao.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
+      propertyPath: direcao.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6453388690174988002, guid: 491cc8a621d03cc439ced0e3cd52139d, type: 3}
       propertyPath: pontoDestino.x
       value: 0
       objectReference: {fileID: 0}
@@ -23047,7 +23063,7 @@ Transform:
   m_GameObject: {fileID: 6116318565723160563}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0000000074223947, y: -0.00000000657724, z: 4.8818873e-17, w: 1}
-  m_LocalPosition: {x: -1.4, y: 22, z: -9.505575}
+  m_LocalPosition: {x: 1.8, y: 18.8, z: -9.505575}
   m_LocalScale: {x: 4.6362696, y: 2.6394935, z: 2.6394935}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -23064,7 +23080,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.027634816, y: 0.001971977, z: 0.9996092, w: 0.003743993}
   m_LocalPosition: {x: -10.67, y: 12.4, z: 5.465}
-  m_LocalScale: {x: 0.27805695, y: -0.49726358, z: 0.62863696}
+  m_LocalScale: {x: 0.45573536, y: -0.92660093, z: 0.62863696}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2368955228761800339}
@@ -23227,11 +23243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -28.63
+      value: -2.84
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -68.76
+      value: -67.96
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -23246,7 +23262,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2587899124086475130, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       insertIndex: -1
@@ -23595,7 +23612,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1261746173519611556, guid: 4bafbd588c944b74d9f7631ecd6882e0, type: 3}
+  m_Sprite: {fileID: 5773041331335176264, guid: 3b72a24eec5728e41aa3a99a7da83bd0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -23621,6 +23638,18 @@ PrefabInstance:
     - target: {fileID: 2615910439551945957, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224073928578843895, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
+      propertyPath: m_Color.b
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224073928578843895, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
+      propertyPath: m_Color.g
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224073928578843895, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9607843
       objectReference: {fileID: 0}
     - target: {fileID: 4474938713673504084, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
       propertyPath: m_AnchorMax.y
@@ -23733,7 +23762,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4897445576991600292, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: proximaCena
-      value: fasee 4
+      value: 'fase 4 '
       objectReference: {fileID: 0}
     - target: {fileID: 5936208819541261818, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_Sprite

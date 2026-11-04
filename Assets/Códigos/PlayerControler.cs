@@ -19,15 +19,11 @@ public class PlayerControler : MonoBehaviour
 
 
         if (_currentLP > maxLP)
-        {
             _currentLP = maxLP;
-        }
 
 
         if (healthBar != null)
-        {
             healthBar.SetHealth(_currentLP);
-        }
     }
 
 
@@ -62,26 +58,23 @@ public class PlayerControler : MonoBehaviour
     private bool _isReloading = false;
 
 
-    // ANIMAÇÃO DE CUSPIR
     private bool _isSpitting = false;
     public float tempoCuspindo = 1f;
 
 
     void Start()
     {
-        _rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        _animator = gameObject.GetComponent<Animator>();
-        _audioSource = gameObject.GetComponent<AudioSource>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
 
 
         _currentLP = maxLP;
 
 
         if (healthBar != null)
-        {
             healthBar.Initialize(maxLP, _currentLP);
-        }
 
 
         if (CheckpointManager.temCheckpoint &&
@@ -92,9 +85,7 @@ public class PlayerControler : MonoBehaviour
 
 
             if (_rigidbody2D != null)
-            {
                 _rigidbody2D.linearVelocity = Vector2.zero;
-            }
 
 
             Debug.Log("Jogador retornou ao checkpoint!");
@@ -102,7 +93,6 @@ public class PlayerControler : MonoBehaviour
     }
 
 
-    // FUNÇÃO PARA CUSPIR
     public void Cuspir()
     {
         if (_isSpitting || _animator == null)
@@ -159,9 +149,7 @@ public class PlayerControler : MonoBehaviour
     {
         if (!ignoreCooldown &&
             Time.time - _lastDamageTime < damageCooldown)
-        {
             return;
-        }
 
 
         _lastDamageTime = Time.time;
@@ -169,21 +157,15 @@ public class PlayerControler : MonoBehaviour
 
 
         if (_currentLP < 0)
-        {
             _currentLP = 0;
-        }
 
 
         if (healthBar != null)
-        {
             healthBar.SetHealth(_currentLP);
-        }
 
 
         if (applyKnockback && amount > 0)
-        {
             ApplyDamageKnockback();
-        }
 
 
         KillPlayer();
@@ -220,28 +202,50 @@ public class PlayerControler : MonoBehaviour
     }
 
 
+    // Reconhece o chão normal e a plataforma móvel
+    private bool EhChao(Collision2D collision)
+    {
+        return collision.gameObject.CompareTag("chao") ||
+               collision.gameObject.GetComponent<PlataformaMovel>() != null;
+    }
+
+
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "chao")
+        if (EhChao(collision))
         {
-            noChao = true;
+            foreach (ContactPoint2D contato in collision.contacts)
+            {
+                if (contato.normal.y > 0.5f)
+                {
+                    noChao = true;
+                    return;
+                }
+            }
         }
     }
 
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("chao"))
+        if (EhChao(collision))
         {
-            noChao = true;
-            _hasJumped = false;
+            foreach (ContactPoint2D contato in collision.contacts)
+            {
+                if (contato.normal.y > 0.5f)
+                {
+                    noChao = true;
+                    _hasJumped = false;
+                    return;
+                }
+            }
         }
     }
 
 
     void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "chao")
+        if (EhChao(collision))
         {
             noChao = false;
         }
@@ -253,47 +257,38 @@ public class PlayerControler : MonoBehaviour
         andando = false;
 
 
-        // MOVIMENTAÇÃO PARA ESQUERDA
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.A))
         {
-            transform.position += new Vector3(-velocidade * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(
+                -velocidade * Time.deltaTime, 0, 0);
 
 
             _spriteRenderer.flipX = true;
             _lastMoveDirection = Vector2.left;
 
 
-            Debug.Log("Left");
-
-
-            if (noChao == true)
-            {
+            if (noChao)
                 andando = true;
-            }
         }
 
 
-        // MOVIMENTAÇÃO PARA DIREITA
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow) ||
+            Input.GetKey(KeyCode.D))
         {
-            transform.position += new Vector3(velocidade * Time.deltaTime, 0, 0);
+            transform.position += new Vector3(
+                velocidade * Time.deltaTime, 0, 0);
 
 
             _spriteRenderer.flipX = false;
             _lastMoveDirection = Vector2.right;
 
 
-            Debug.Log("Right");
-
-
-            if (noChao == true)
-            {
+            if (noChao)
                 andando = true;
-            }
         }
 
 
-        // PULO
         if ((Input.GetKeyDown(KeyCode.UpArrow) ||
              Input.GetKeyDown(KeyCode.W) ||
              Input.GetKeyDown(KeyCode.Space)) &&
@@ -309,16 +304,13 @@ public class PlayerControler : MonoBehaviour
 
 
             if (somPulo != null && _audioSource != null)
-            {
                 _audioSource.PlayOneShot(somPulo);
-            }
 
 
             Debug.Log("Jump");
         }
 
 
-        // ATIRAR / CUSPIR COM L OU Z
         if (Input.GetKeyDown(KeyCode.L) ||
             Input.GetKeyDown(KeyCode.Z))
         {
