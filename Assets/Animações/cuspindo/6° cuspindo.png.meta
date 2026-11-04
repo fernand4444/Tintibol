@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3eb1bc9d0c30878439f4ffbce1eaf748
+guid: b9572c6b0206bc441b5ab8e8e9652897
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6673050267026638081
-    second: quadro0007_0
+      213: -8617703281020903218
+    second: "6\xB0 cuspindo_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: quadro0007_0
+      name: "6\xB0 cuspindo_0"
       rect:
         serializedVersion: 2
-        x: 193
-        y: 154
-        width: 216
-        height: 189
+        x: 0
+        y: 0
+        width: 222
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffa3d8133209463a0800000000000000
-      internalID: -6673050267026638081
+      spriteID: ec0e7034684c76880800000000000000
+      internalID: -8617703281020903218
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      quadro0007_0: -6673050267026638081
+      "6\xB0 cuspindo_0": -8617703281020903218
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

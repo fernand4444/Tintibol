@@ -282,6 +282,7 @@ MonoBehaviour:
   knockbackUpwardFactor: 0.75
   noChao: 0
   andando: 0
+  cuspindo: 0
   somPulo: {fileID: 8300000, guid: 1f89a0599e8a36841b426bf57e3ee1b7, type: 3}
   tempoCuspindo: 1
 --- !u!60 &4106618282150816500
@@ -664,14 +665,14 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5773041331335176264, guid: 3b72a24eec5728e41aa3a99a7da83bd0, type: 3}
+  m_Sprite: {fileID: -4130885874451826871, guid: 8ad9f833963ec06479d5a765176bcd57, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.22, y: 1.92}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

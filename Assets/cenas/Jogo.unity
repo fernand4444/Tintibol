@@ -10150,6 +10150,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3089942034234446359, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: m_Size.x
+      value: 2.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089942034234446359, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: m_Size.y
+      value: 1.92
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089942034234446359, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4130885874451826871, guid: 8ad9f833963ec06479d5a765176bcd57, type: 3}
+    - target: {fileID: 3089942034234446359, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3089942034234446359, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
