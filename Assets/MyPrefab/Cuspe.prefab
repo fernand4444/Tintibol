@@ -170,5 +170,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88a497fa7daf10e4094b4cf8e317579a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaquedoBolt
-  dano: 5
+  dano: 50
   tempoVida: 3
