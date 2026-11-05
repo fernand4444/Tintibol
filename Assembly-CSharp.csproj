@@ -82,6 +82,7 @@
     <Compile Include="Assets\Códigos\DestruirEstaca.cs" />
     <Compile Include="Assets\Códigos\Pause.cs" />
     <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
+    <Compile Include="Assets\Códigos\Empulso.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
     <Compile Include="Assets\Códigos\FecharTelaInformacao.cs" />
     <Compile Include="Assets\Códigos\VilãoPrincipal.cs" />
