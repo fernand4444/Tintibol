@@ -1,43 +1,48 @@
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerControler : MonoBehaviour
 {
+    [Header("Sistema de Vida")]
     public int maxLP = 100;
     private int _currentLP;
     private float _lastDamageTime = -Mathf.Infinity;
     public float damageCooldown = 3f;
     public Barradevida healthBar;
 
-    public void RecuperarVida(int quantidade)
-    {
-        _currentLP += quantidade;
-
-        if (_currentLP > maxLP)
-            _currentLP = maxLP;
-
-        if (healthBar != null)
-            healthBar.SetHealth(_currentLP);
-    }
-
+    [Header("Movimentação")]
     public float velocidade = 10f;
     public float forcaPulo = 10f;
     public float knockbackForce = 8f;
     public float knockbackUpwardFactor = 0.75f;
+
     public bool noChao = false;
     public bool andando = false;
     public bool cuspindo = false;
+
+    [Header("Ataque de Cuspe")]
+    public GameObject prefabCuspe;
+    public Transform pontoCuspe;
+    public float tempoCuspindo = 1f;
+    public float tempoParaAtacar = 0.3f;
+    public float velocidadeCuspe = 10f;
+
+    [Header("Áudio")]
+    public AudioClip somPulo;
 
     private Rigidbody2D _rigidbody2D;
     private SpriteRenderer _spriteRenderer;
     private Animator _animator;
     private AudioSource _audioSource;
 
-    public AudioClip somPulo;
     private Vector2 _lastMoveDirection = Vector2.right;
+    private Vector2 _attackDirection = Vector2.right;
+
     private bool _hasJumped;
+    private bool _isReloading;
+    private bool _isSpitting;
 
     public bool HasJumped => _hasJumped;
 
@@ -45,11 +50,6 @@ public class PlayerControler : MonoBehaviour
     {
         _hasJumped = false;
     }
-
-    private bool _isReloading = false;
-
-    private bool _isSpitting = false;
-    public float tempoCuspindo = 1f;
 
     void Start()
     {
@@ -76,48 +76,109 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    // CHAMAR ANIMAÇÃO DE CUSPIR
+
     public void Cuspir()
     {
         if (_isSpitting || _animator == null)
             return;
 
+        _attackDirection = _lastMoveDirection;
+
+
+        if (_attackDirection == Vector2.zero)
+        {
+            _attackDirection = _spriteRenderer != null &&
+                               _spriteRenderer.flipX
+                ? Vector2.left
+                : Vector2.right;
+        }
+
         StartCoroutine(AnimacaoCuspir());
     }
 
-    // EXECUTAR E FINALIZAR ANIMAÇÃO
     private IEnumerator AnimacaoCuspir()
     {
         _isSpitting = true;
+        cuspindo = true;
 
-        // Ativa o parâmetro da animação
-        _animator.SetBool("cuspindo", true);
+        float duracao = Mathf.Max(0f, tempoCuspindo);
 
-        // Aguarda a duração da animação
-        yield return new WaitForSeconds(tempoCuspindo);
+        float momentoAtaque = Mathf.Clamp(
+            tempoParaAtacar,
+            0f,
+            duracao
+        );
 
-        // Desativa o parâmetro para voltar ao normal
-        _animator.SetBool("cuspindo", false);
+        if (momentoAtaque > 0f)
+            yield return new WaitForSeconds(momentoAtaque);
 
+        ExecutarAtaqueCuspe();
+
+        float tempoRestante = duracao - momentoAtaque;
+
+        if (tempoRestante > 0f)
+            yield return new WaitForSeconds(tempoRestante);
+
+        cuspindo = false;
         _isSpitting = false;
     }
 
-    private void KillPlayer()
+    private void ExecutarAtaqueCuspe()
     {
-        if (_currentLP <= 0 && !_isReloading)
+        if (prefabCuspe == null || pontoCuspe == null)
         {
-            _isReloading = true;
+            Debug.LogWarning(
+                "Prefab do cuspe ou ponto de disparo não configurado!"
+            );
+            return;
+        }
 
-            if (_rigidbody2D != null)
-            {
-                _rigidbody2D.linearVelocity =
-                    new Vector2(0, _rigidbody2D.linearVelocity.y);
-            }
+        float direcao = Mathf.Sign(_attackDirection.x);
 
-            SceneManager.LoadScene(
-                SceneManager.GetActiveScene().name
+        Vector3 offset = pontoCuspe.position - transform.position;
+
+        offset.x = Mathf.Abs(offset.x) * direcao;
+
+        Vector3 posicaoDisparo = transform.position + offset;
+
+        GameObject cuspe = Instantiate(
+            prefabCuspe,
+            posicaoDisparo,
+            Quaternion.identity
+        );
+
+        Rigidbody2D rbCuspe = cuspe.GetComponent<Rigidbody2D>();
+
+        if (rbCuspe != null)
+        {
+            rbCuspe.linearVelocity = new Vector2(
+                direcao * velocidadeCuspe,
+                0f
             );
         }
+        else
+        {
+            Debug.LogWarning(
+                "O prefab do cuspe não possui Rigidbody2D!"
+            );
+        }
+
+        SpriteRenderer spriteCuspe =
+            cuspe.GetComponent<SpriteRenderer>();
+
+        if (spriteCuspe != null)
+            spriteCuspe.flipX = direcao < 0f;
+    }
+
+    public void RecuperarVida(int quantidade)
+    {
+        _currentLP += quantidade;
+
+        if (_currentLP > maxLP)
+            _currentLP = maxLP;
+
+        if (healthBar != null)
+            healthBar.SetHealth(_currentLP);
     }
 
     public void TakeDamage(
@@ -125,11 +186,15 @@ public class PlayerControler : MonoBehaviour
         bool applyKnockback = true,
         bool ignoreCooldown = false)
     {
+        if (_currentLP <= 0 || amount <= 0)
+            return;
+
         if (!ignoreCooldown &&
             Time.time - _lastDamageTime < damageCooldown)
             return;
 
         _lastDamageTime = Time.time;
+
         _currentLP -= amount;
 
         if (_currentLP < 0)
@@ -146,6 +211,9 @@ public class PlayerControler : MonoBehaviour
 
     private void ApplyDamageKnockback()
     {
+        if (_rigidbody2D == null)
+            return;
+
         Vector2 direction = _lastMoveDirection;
 
         if (direction == Vector2.zero)
@@ -153,24 +221,48 @@ public class PlayerControler : MonoBehaviour
             if (_rigidbody2D.linearVelocity.x != 0)
             {
                 direction = new Vector2(
-                    Mathf.Sign(_rigidbody2D.linearVelocity.x), 0f);
+                    Mathf.Sign(_rigidbody2D.linearVelocity.x),
+                    0f
+                );
             }
             else
             {
-                direction = _spriteRenderer.flipX
+                direction = _spriteRenderer != null &&
+                            _spriteRenderer.flipX
                     ? Vector2.left
                     : Vector2.right;
             }
         }
 
-        Vector2 knockbackDirection =
-            new Vector2(-direction.x, knockbackUpwardFactor).normalized;
+        Vector2 knockbackDirection = new Vector2(
+            -direction.x,
+            knockbackUpwardFactor
+        ).normalized;
 
         _rigidbody2D.linearVelocity =
             knockbackDirection * knockbackForce;
     }
 
-    // Reconhece o chão normal e a plataforma móvel
+    private void KillPlayer()
+    {
+        if (_currentLP <= 0 && !_isReloading)
+        {
+            _isReloading = true;
+
+            if (_rigidbody2D != null)
+            {
+                _rigidbody2D.linearVelocity = new Vector2(
+                    0f,
+                    _rigidbody2D.linearVelocity.y
+                );
+            }
+
+            SceneManager.LoadScene(
+                SceneManager.GetActiveScene().name
+            );
+        }
+    }
+
     private bool EhChao(Collision2D collision)
     {
         return collision.gameObject.CompareTag("chao") ||
@@ -211,22 +303,49 @@ public class PlayerControler : MonoBehaviour
     void OnCollisionExit2D(Collision2D collision)
     {
         if (EhChao(collision))
-        {
             noChao = false;
-        }
+    }
+
+    private void AtualizarAnimacoes()
+    {
+        if (_animator == null)
+            return;
+
+        _animator.SetBool("Cuspindo", cuspindo);
+
+        _animator.SetBool(
+            "Andando",
+            andando && !cuspindo
+        );
+
+        _animator.SetBool(
+            "Pulando",
+            !noChao && !cuspindo
+        );
     }
 
     void Update()
     {
+        if (_currentLP <= 0)
+        {
+            KillPlayer();
+            return;
+        }
+
         andando = false;
 
         if (Input.GetKey(KeyCode.LeftArrow) ||
             Input.GetKey(KeyCode.A))
         {
             transform.position += new Vector3(
-                -velocidade * Time.deltaTime, 0, 0);
+                -velocidade * Time.deltaTime,
+                0f,
+                0f
+            );
 
-            _spriteRenderer.flipX = true;
+            if (_spriteRenderer != null)
+                _spriteRenderer.flipX = true;
+
             _lastMoveDirection = Vector2.left;
 
             if (noChao)
@@ -237,9 +356,14 @@ public class PlayerControler : MonoBehaviour
             Input.GetKey(KeyCode.D))
         {
             transform.position += new Vector3(
-                velocidade * Time.deltaTime, 0, 0);
+                velocidade * Time.deltaTime,
+                0f,
+                0f
+            );
 
-            _spriteRenderer.flipX = false;
+            if (_spriteRenderer != null)
+                _spriteRenderer.flipX = false;
+
             _lastMoveDirection = Vector2.right;
 
             if (noChao)
@@ -253,10 +377,13 @@ public class PlayerControler : MonoBehaviour
         {
             _hasJumped = true;
 
-            _rigidbody2D.AddForce(
-                Vector2.up * forcaPulo,
-                ForceMode2D.Impulse
-            );
+            if (_rigidbody2D != null)
+            {
+                _rigidbody2D.AddForce(
+                    Vector2.up * forcaPulo,
+                    ForceMode2D.Impulse
+                );
+            }
 
             if (somPulo != null && _audioSource != null)
                 _audioSource.PlayOneShot(somPulo);
@@ -264,23 +391,12 @@ public class PlayerControler : MonoBehaviour
             Debug.Log("Jump");
         }
 
-        // APERTA Z OU L PARA CUSPIR
         if (Input.GetKeyDown(KeyCode.Z) ||
             Input.GetKeyDown(KeyCode.L))
         {
             Cuspir();
         }
 
-        if (_currentLP <= 0)
-        {
-            KillPlayer();
-            return;
-        }
-
-        // ATUALIZA AS ANIMAÇÕES NORMAIS
-        _animator.SetBool("Andando", andando);
-        _animator.SetBool("Pulando", !noChao);
-
-        _animator.SetBool("Cuspindo", cuspindo);
+        AtualizarAnimacoes();
     }
 }

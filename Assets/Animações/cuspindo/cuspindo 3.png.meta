@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 53c2f70192c45e741acf125492915a33
+guid: 4677d28b96e80b14ba2b95c5ce15aaee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8896807232744359075
-    second: "2\xB0 cuspindo_0"
+      213: 1780410230692068146
+    second: cuspindo 3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 29
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -178,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "2\xB0 cuspindo_0"
+      name: cuspindo 3_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 222
-        height: 192
+        x: 2
+        y: 3
+        width: 219
+        height: 191
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d5b752985f0388480800000000000000
-      internalID: -8896807232744359075
+      spriteID: 23b3fdafba945b810800000000000000
+      internalID: 1780410230692068146
       vertices: []
       indices: 
       edges: []
@@ -213,7 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      "2\xB0 cuspindo_0": -8896807232744359075
+      cuspindo 3_0: 1780410230692068146
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

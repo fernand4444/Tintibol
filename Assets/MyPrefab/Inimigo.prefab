@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b9ac0dd14a4a145b2bda66108eb7cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  maxLP: 2
+  maxLP: 10
   damage: 20
   stompDamage: 1
   stompBounce: 8

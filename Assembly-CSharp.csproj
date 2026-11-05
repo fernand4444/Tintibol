@@ -66,6 +66,7 @@
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
     <Compile Include="Assets\Códigos\MostrarInformacao.cs" />
     <Compile Include="Assets\Códigos\LuzPiscando.cs" />
+    <Compile Include="Assets\Códigos\AtaquedoBolt.cs" />
     <Compile Include="Assets\Códigos\PlataformaQueCai.cs" />
     <Compile Include="Assets\Códigos\VidaInimigo.cs" />
     <Compile Include="Assets\Códigos\AudioManager.cs" />
