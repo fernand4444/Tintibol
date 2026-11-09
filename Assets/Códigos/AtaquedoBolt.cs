@@ -14,17 +14,26 @@ public class ProjetilCuspe : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica se atingiu um inimigo
+        // Verifica se atingiu um inimigo comum
         EnemyController inimigo =
             other.GetComponentInParent<EnemyController>();
 
         if (inimigo != null)
         {
-            // Aplica o dano configurado no projétil
             inimigo.TakeDamage(dano);
-
-            // Destrói o projétil após o impacto
             Destroy(gameObject);
+            return;
+        }
+
+        // Verifica se atingiu o vilão
+        Vidadovilao vilao =
+            other.GetComponentInParent<Vidadovilao>();
+
+        if (vilao != null)
+        {
+            vilao.TakeDamage(dano);
+            Destroy(gameObject);
+            return;
         }
     }
 }
