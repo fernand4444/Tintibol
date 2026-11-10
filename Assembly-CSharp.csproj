@@ -85,7 +85,9 @@
     <Compile Include="Assets\Códigos\Temporizador.cs" />
     <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
     <Compile Include="Assets\Códigos\Empulso.cs" />
+    <Compile Include="Assets\Códigos\GeradorBolhas.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
+    <Compile Include="Assets\Códigos\Bolhas.cs" />
     <Compile Include="Assets\Códigos\FecharTelaInformacao.cs" />
     <Compile Include="Assets\Códigos\VilãoPrincipal.cs" />
   </ItemGroup>
