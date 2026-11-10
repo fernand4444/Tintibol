@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/cenas/Jogo.unity
     guid: 6ebfc84fefaeb264897e78bbefd1b916
   - enabled: 0
-    path: Assets/cenas/fase 2.unity
+    path: Assets/Scenes/fase 2.unity
     guid: aeee8a0e40b6f104a9c14bed6882b11a
   - enabled: 0
     path: Assets/cenas/fase 3.unity

@@ -289,6 +289,10 @@ MonoBehaviour:
   tempoCuspindo: 1
   tempoParaAtacar: 0.09
   velocidadeCuspe: 10
+  velocidadeNado: 5
+  resistenciaAgua: 1
+  gravidadeAfundando: 0.5
+  corNaAgua: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
   somPulo: {fileID: 8300000, guid: 1f89a0599e8a36841b426bf57e3ee1b7, type: 3}
 --- !u!60 &4106618282150816500
 PolygonCollider2D:
