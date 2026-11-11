@@ -11033,6 +11033,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0761973a8928c94cae573f93dc06fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  SonsdeFundo: {fileID: 0}
+  SomdePulo: {fileID: 0}
+  SomdeMorte: {fileID: 0}
+  SomdeCuspe: {fileID: 0}
+  SomdasEstacas: {fileID: 0}
+  TomandoDano: {fileID: 0}
+  SomdoImpulso: {fileID: 0}
+  SomdeBolhas: {fileID: 0}
+  "SomdeFerrodoCh\xE3o": {fileID: 0}
 --- !u!1001 &1624636217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12474,7 +12483,7 @@ Transform:
   m_GameObject: {fileID: 1887689746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.156143, y: -66.9288, z: -12.4836}
+  m_LocalPosition: {x: 82.35385, y: -66.5588, z: -12.4836}
   m_LocalScale: {x: 1, y: 1.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13659,7 +13668,7 @@ Transform:
   m_GameObject: {fileID: 6116318565723160563}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -32.156143, y: -66.9288, z: -12.4836}
+  m_LocalPosition: {x: 82.35385, y: -66.5588, z: -12.4836}
   m_LocalScale: {x: 0.43113786, y: 0.16650946, z: 2.7767847}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13827,11 +13836,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -33.23
+      value: 81.28
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -68.36
+      value: -67.99
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
