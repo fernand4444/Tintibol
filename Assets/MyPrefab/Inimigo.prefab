@@ -224,6 +224,8 @@ MonoBehaviour:
   blinkHitTimes: 1
   blinkHitDuration: 10
   deathAnimationDuration: 0
+  somMorte: {fileID: 8300000, guid: 10b77e1caa12ff7479468cfa5cb0d7e5, type: 3}
+  volumeMorte: 0.602
 --- !u!60 &8511769857779448375
 PolygonCollider2D:
   m_ObjectHideFlags: 0

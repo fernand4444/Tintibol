@@ -1,18 +1,19 @@
-
+using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
+using UnityEngine.VFX;
 
 public class Vidadovilao : MonoBehaviour
 {
     [Header("Vida do Vilão")]
-    public Barradevida healthBar;
+    public Slider healthBar;
     public int maxLP = 100;
     public int damage;
 
     private bool _isAlive;
     private int _currentLP;
-    private Slider _mySlider;
 
     private static readonly int DieHash =
         Animator.StringToHash("Die");
@@ -23,18 +24,23 @@ public class Vidadovilao : MonoBehaviour
     private Animator _animator;
     private Collider2D _collider2D;
 
+    private float tempo;
+
     [Header("Spawner")]
     public GameObject prefab;
     public Transform pontoDeSpawn;
-    public float intervaloSpawn = 2f;
+    public int SpawnerCount = 10;
+    public float intervalo = 2f;
+    public float raio = 5f;
     public float intervaloTornado = 5f;
+
+    private List<GameObject> Spawner = new();
 
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
 
     private void Awake()
     {
-        _mySlider = GetComponent<Slider>();
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
     }
@@ -49,19 +55,23 @@ public class Vidadovilao : MonoBehaviour
 
     public void Initialize(int maxLP, int currentLP)
     {
-        if (_mySlider == null)
+        if (healthBar == null)
+        {
+            Debug.LogError("Barra de vida não foi atribuída no Inspector!");
             return;
+        }
 
-        _mySlider.maxValue = maxLP;
-        _mySlider.value = currentLP;
+        healthBar.minValue = 0;
+        healthBar.maxValue = maxLP;
+        healthBar.value = currentLP;
     }
 
     public void SetHealth(int currentLP)
     {
-        if (_mySlider == null)
+        if (healthBar == null)
             return;
 
-        _mySlider.value = currentLP;
+        healthBar.value = currentLP;
     }
 
     public void TakeDamage(int damage)
@@ -77,7 +87,6 @@ public class Vidadovilao : MonoBehaviour
         Debug.Log("Vilão recebeu " + damage +
                   " de dano. Vida restante: " + _currentLP);
 
-        // Ativa o Tornado quando chegar à metade da vida
         if (_currentLP <= maxLP / 2 && !_TornadoAtivado)
         {
             _TornadoAtivado = true;
@@ -87,9 +96,8 @@ public class Vidadovilao : MonoBehaviour
         if (_currentLP <= 0)
         {
             Die();
-            
             Destroy(gameObject);
-}
+        }
     }
 
     private IEnumerator CicloTornado()
@@ -111,7 +119,7 @@ public class Vidadovilao : MonoBehaviour
             {
                 SpawnObjeto();
 
-                yield return new WaitForSeconds(intervaloSpawn);
+                yield return new WaitForSeconds(intervalo);
             }
 
             yield return new WaitForSeconds(intervaloTornado);
@@ -123,11 +131,24 @@ public class Vidadovilao : MonoBehaviour
         if (prefab == null || pontoDeSpawn == null)
             return;
 
-        Instantiate(
+        var go = prefab.GetComponent<EnemyController>();
+
+        if (Spawner.Count >= SpawnerCount) return;
+        
+        Vector3 pos = pontoDeSpawn.position + new Vector3(
+            UnityEngine.Random.Range(-raio, raio),
+            UnityEngine.Random.Range(-raio, raio),
+            0f);
+
+            Spawner.Add (Instantiate
+            (
             prefab,
-            pontoDeSpawn.position,
+            pos,
             Quaternion.identity
-        );
+            )
+
+            );
+        
     }
 
     private void Die()
@@ -145,5 +166,19 @@ public class Vidadovilao : MonoBehaviour
 
         if (_collider2D != null)
             _collider2D.enabled = false;
+    }
+
+    void Update()
+    {
+        if (!_isAlive)
+            return;
+
+        tempo += Time.deltaTime;
+
+        if (tempo >= intervalo)
+        {
+            SpawnObjeto();
+            tempo = 0f;
+        }
     }
 }

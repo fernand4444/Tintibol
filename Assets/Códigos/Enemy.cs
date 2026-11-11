@@ -1,3 +1,5 @@
+
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -24,6 +26,11 @@ public class EnemyController : MonoBehaviour
     [Header("Animação")]
     [SerializeField] private float deathAnimationDuration = 1f;
 
+    [Header("Áudio de Morte")]
+    [SerializeField] private AudioClip somMorte;
+    [SerializeField, Range(0f, 1f)]
+    private float volumeMorte = 1f;
+
     private static readonly int MovingHash =
         Animator.StringToHash("Moving");
 
@@ -40,15 +47,13 @@ public class EnemyController : MonoBehaviour
 
     private Animator _animator;
     private Collider2D _collider2D;
-    private AudioSource _audioSource;
-    private SpriteRenderer _spriteRenderer;
+
+    public Action OnEnemyDied;
 
     void Start()
     {
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
-        _audioSource = GetComponent<AudioSource>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         _isAlive = true;
 
@@ -118,13 +123,9 @@ public class EnemyController : MonoBehaviour
             _animator.SetBool(MovingHash, isMoving);
     }
 
-    // RECEBE DANO DO PROJÉTIL OU DO PULO DO JOGADOR
     public void TakeDamage(int damage)
     {
-        if (!_isAlive)
-            return;
-
-        if (damage <= 0)
+        if (!_isAlive || damage <= 0)
             return;
 
         _currentLP -= damage;
@@ -140,7 +141,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    // MORTE DO INIMIGO
     private void Die()
     {
         if (!_isAlive)
@@ -148,19 +148,51 @@ public class EnemyController : MonoBehaviour
 
         _isAlive = false;
 
+        Debug.Log(gameObject.name + " morreu!");
+
+        // Toca o áudio em um objeto separado.
+        if (somMorte != null)
+        {
+            GameObject objetoAudio =
+                new GameObject("AudioMorteInimigo");
+
+            objetoAudio.transform.position = transform.position;
+
+            AudioSource fonteAudio =
+                objetoAudio.AddComponent<AudioSource>();
+
+            fonteAudio.clip = somMorte;
+            fonteAudio.volume = volumeMorte;
+            fonteAudio.playOnAwake = false;
+            fonteAudio.spatialBlend = 0f;
+
+            fonteAudio.Play();
+
+            Destroy(objetoAudio, somMorte.length + 0.2f);
+
+            Debug.Log("Áudio de morte iniciado!");
+        }
+        else
+        {
+            Debug.LogWarning(
+                "O áudio de morte não foi colocado no Inspector!"
+            );
+        }
+
+        OnEnemyDied?.Invoke();
+
+        // Ativa a animação de morte.
         if (_animator != null)
         {
             _animator.SetBool(MovingHash, false);
             _animator.SetTrigger(DieHash);
         }
 
+        // Desativa a colisão.
         if (_collider2D != null)
             _collider2D.enabled = false;
 
-        if (_animator != null)
-            StartCoroutine(DestroyAfterDeath());
-        else
-            Destroy(gameObject);
+        StartCoroutine(DestroyAfterDeath());
     }
 
     private IEnumerator DestroyAfterDeath()
@@ -227,7 +259,10 @@ public class EnemyController : MonoBehaviour
 
                 playerRigidbody.linearVelocity = new Vector2(
                     playerRigidbody.linearVelocity.x,
-                    Mathf.Max(playerRigidbody.linearVelocity.y, stompBounce)
+                    Mathf.Max(
+                        playerRigidbody.linearVelocity.y,
+                        stompBounce
+                    )
                 );
             }
 

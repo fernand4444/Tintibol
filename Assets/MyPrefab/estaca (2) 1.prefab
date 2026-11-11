@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7275062609432941856}
   - component: {fileID: 893420560976215157}
   - component: {fileID: 1265558837523021577}
-  - component: {fileID: 340784151701128791}
+  - component: {fileID: 6420778849065688413}
+  - component: {fileID: 4718733009689747454}
   m_Layer: 0
   m_Name: estaca (2) 1
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 82.79, y: -67.35, z: 0}
-  m_LocalScale: {x: 0.8183, y: 0.7931, z: 1}
+  m_LocalScale: {x: 0.62549084, y: 0.4896844, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5322003485227791018}
@@ -84,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5411656429870445677, guid: bfa9d25b01de04546829dcf556f0cd1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -123,7 +124,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!60 &893420560976215157
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -170,18 +171,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.38816404, y: 0.60851735}
-      - {x: 0.35390624, y: 0.6427751}
-      - {x: -0.5196679, y: 0.6427751}
-      - {x: -0.55392575, y: 0.62564623}
+    - - {x: 0.37063304, y: 0.6108989}
+      - {x: 0.34295708, y: 0.6119311}
+      - {x: -0.56348, y: 0.6119311}
+      - {x: -0.5582931, y: 0.59480214}
       - {x: -0.55392575, y: 0.5742595}
-      - {x: -0.5196679, y: 0.38584155}
-      - {x: -0.17708981, y: -0.5391193}
-      - {x: -0.1257031, y: -0.55624825}
-      - {x: -0.040058576, y: -0.55624825}
-      - {x: 0.06271486, y: -0.33357248}
+      - {x: -0.512225, y: 0.38987193}
+      - {x: -0.4601354, y: 0.3031353}
+      - {x: -0.36745182, y: 0.049088046}
+      - {x: -0.16221923, y: -0.5391193}
+      - {x: -0.22869709, y: -0.3251465}
+      - {x: -0.0901798, y: -0.3125841}
+      - {x: 0.029282954, y: -0.30539313}
       - {x: 0.18261719, y: 0.11177907}
-      - {x: 0.35390624, y: 0.5057439}
+      - {x: 0.25106922, y: 0.32989904}
+      - {x: 0.33417618, y: 0.50810885}
   m_UseDelaunayMesh: 1
 --- !u!114 &1265558837523021577
 MonoBehaviour:
@@ -196,7 +200,104 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Damage
   damageAmount: 30
---- !u!114 &340784151701128791
+--- !u!82 &6420778849065688413
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4427190660135503762}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 65facff8167a3f04a80e258e6c5290f1, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4718733009689747454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -205,10 +306,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4427190660135503762}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc85d4b39acc6145a2f2b6c54bba1f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 734eb5200fb2b9d46b3e11421cf95856, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestruirEstaca
-  tagJogador: Player
+  m_EditorClassIdentifier: Assembly-CSharp::Estaca
+  somDaEstaca: {fileID: 8300000, guid: 65facff8167a3f04a80e258e6c5290f1, type: 3}
 --- !u!1 &8350264583232631335
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 8350264583232631335}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.11, y: -4.08, z: 0}
+  m_LocalPosition: {x: -3.29, y: -6.5, z: 0}
   m_LocalScale: {x: -1.386204, y: 1.4563109, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -300,6 +401,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82eb89b69c1450d4986b241e7ec61bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DetectorEstaca
-  velocidadeQueda: 3
+  velocidadeQueda: 5
   atrasoMinimo: 0.3
   atrasoMaximo: 2

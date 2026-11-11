@@ -1302,7 +1302,7 @@ GameObject:
   - component: {fileID: 2135075526}
   - component: {fileID: 2135075525}
   m_Layer: 0
-  m_Name: ChatGPT Image 2_07_2026, 19_18_08_0
+  m_Name: cenario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
