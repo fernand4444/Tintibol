@@ -5117,7 +5117,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -2
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1143880812370507378, guid: 8c7bd5a91e5cb614d931986f45034401, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6180,7 +6180,7 @@ GameObject:
   - component: {fileID: 932611910}
   m_Layer: 0
   m_Name: 219757-removebg-preview_0 (1)
-  m_TagString: Untagged
+  m_TagString: chao
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10078,7 +10078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 430989382310391930, guid: 627b3f7fa427c8642acf6029d97424c2, type: 3}
       propertyPath: maxLP
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 430989382310391930, guid: 627b3f7fa427c8642acf6029d97424c2, type: 3}
       propertyPath: moveSpeed
