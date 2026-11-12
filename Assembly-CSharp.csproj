@@ -62,6 +62,7 @@
     <Compile Include="Assets\audios\AudioColisao.cs" />
     <Compile Include="Assets\Códigos\PlayerControler.cs" />
     <Compile Include="Assets\Códigos\Enemy.cs" />
+    <Compile Include="Assets\Códigos\DetectorVilao.cs..cs" />
     <Compile Include="Assets\Códigos\DetectorEstaca.cs" />
     <Compile Include="Assets\audios\AudioArea.cs" />
     <Compile Include="Assets\Códigos\BaseAnimacao.cs" />
@@ -77,7 +78,9 @@
     <Compile Include="Assets\Códigos\BolinhaColetavel.cs" />
     <Compile Include="Assets\Códigos\Checkpoint.cs" />
     <Compile Include="Assets\Códigos\ItemImunidade.cs" />
+    <Compile Include="Assets\Códigos\BotaoTutorial.cs" />
     <Compile Include="Assets\Códigos\FisicaAgua.cs" />
+    <Compile Include="Assets\Códigos\AparicaoTemporariaVilao.cs" />
     <Compile Include="Assets\Códigos\Coletavel.cs" />
     <Compile Include="Assets\Animações\Curcene\FinalizarCutscene.cs" />
     <Compile Include="Assets\Códigos\ParallaxBackground.cs" />
@@ -88,6 +91,7 @@
     <Compile Include="Assets\Códigos\Pause.cs" />
     <Compile Include="Assets\Códigos\Temporizador.cs" />
     <Compile Include="Assets\Códigos\ProtecaoJogador.cs" />
+    <Compile Include="Assets\Códigos\DesaparecerVilao.cs" />
     <Compile Include="Assets\Códigos\Empulso.cs" />
     <Compile Include="Assets\Animações\Curcene\PularCutscene.cs" />
     <Compile Include="Assets\Códigos\GeradorBolhas.cs" />

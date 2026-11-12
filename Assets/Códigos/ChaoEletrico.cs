@@ -36,42 +36,56 @@ public class ChaoEletrico : MonoBehaviour
         ativo = true;
 
         float tempo = 0f;
+        float tempoPiscada = 0f;
+        float tempoDano = 0f;
         bool vermelho = false;
 
         while (tempo < duracaoDano)
         {
-            // Faz o chão alternar entre a cor original e vermelho
-            vermelho = !vermelho;
+            tempo += Time.deltaTime;
+            tempoPiscada += Time.deltaTime;
+            tempoDano += Time.deltaTime;
 
-            if (sprite != null)
-                sprite.color = vermelho ? corPerigosa : corOriginal;
-
-            // Causa dano ao jogador
-            Collider2D colisor = GetComponent<Collider2D>();
-
-            if (colisor != null)
+            // Pisca o chão
+            if (tempoPiscada >= velocidadePiscada)
             {
-                Collider2D[] jogadores = Physics2D.OverlapBoxAll(
-                    colisor.bounds.center,
-                    colisor.bounds.size,
-                    0f
-                );
+                tempoPiscada = 0f;
+                vermelho = !vermelho;
 
-                foreach (Collider2D col in jogadores)
+                if (sprite != null)
+                    sprite.color = vermelho ? corPerigosa : corOriginal;
+            }
+
+            // Aplica dano no jogador
+            if (tempoDano >= intervaloDano)
+            {
+                tempoDano = 0f;
+
+                Collider2D colisor = GetComponent<Collider2D>();
+
+                if (colisor != null)
                 {
-                    PlayerControler player =
-                        col.GetComponentInParent<PlayerControler>();
+                    Collider2D[] jogadores = Physics2D.OverlapBoxAll(
+                        colisor.bounds.center,
+                        colisor.bounds.size,
+                        0f
+                    );
 
-                    if (player != null && player.CompareTag("Player"))
-                        player.TakeDamage(dano);
+                    foreach (Collider2D col in jogadores)
+                    {
+                        PlayerControler player =
+                            col.GetComponentInParent<PlayerControler>();
+
+                        if (player != null && player.CompareTag("Player"))
+                            player.TakeDamage(dano);
+                    }
                 }
             }
 
-            yield return new WaitForSeconds(intervaloDano);
-            tempo += intervaloDano;
+            yield return null;
         }
 
-        // Volta à cor original
+        // Para a piscada e restaura a cor original
         if (sprite != null)
             sprite.color = corOriginal;
 

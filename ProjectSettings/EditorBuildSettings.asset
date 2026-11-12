@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/cenas/fase 6.unity
     guid: cad6bd6e5c849244ab06dace8051b212
+  - enabled: 1
+    path: Assets/cenas/tutorial.unity
+    guid: 78e8a35cfb22fff4bb0afe513bc5e77a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

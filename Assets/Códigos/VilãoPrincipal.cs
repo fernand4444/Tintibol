@@ -30,10 +30,26 @@ public class Vidadovilao : MonoBehaviour
     private static readonly int TornadoHash =
         Animator.StringToHash("Tornado");
 
+    private static readonly int MovingHash =
+        Animator.StringToHash("Moving");
+
     private Animator _animator;
     private Collider2D _collider2D;
 
     private float tempo;
+
+    [Header("Movimentação")]
+    public float moveSpeed;
+    public bool useTransform;
+    public bool shouldFlip;
+
+    [SerializeField] private Vector2 movePosition;
+    [SerializeField] private Transform moveDestination;
+
+    private Vector2 _initialPosition;
+    private Vector2 _moveTarget;
+    private bool _isReturning;
+    private float _originalLocalScaleX;
 
     [Header("Spawner")]
     public GameObject prefab;
@@ -43,10 +59,8 @@ public class Vidadovilao : MonoBehaviour
     public Transform pontoDeSpawn4;
     public Transform pontoDeSpawn5;
 
-    public int SpawnerCount = 10;
     public float intervalo = 2f;
     public float raio = 5f;
-    public float intervaloTornado = 5f;
 
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
@@ -75,6 +89,19 @@ public class Vidadovilao : MonoBehaviour
         _currentLP = maxLP;
 
         Initialize(maxLP, _currentLP);
+
+        // Inicializa a movimentação
+        if (shouldFlip)
+            _originalLocalScaleX = transform.localScale.x;
+
+        if (useTransform && moveDestination != null)
+            _moveTarget = moveDestination.localPosition;
+        else
+            _moveTarget = movePosition;
+
+        _initialPosition = transform.position;
+
+        SetMovingAnimation(false);
     }
 
     public void Initialize(int maxLP, int currentLP)
@@ -124,7 +151,6 @@ public class Vidadovilao : MonoBehaviour
         if (_currentLP <= maxLP / 2 && !_TornadoAtivado)
         {
             _TornadoAtivado = true;
-            TornadoCoroutine = StartCoroutine(CicloTornado());
         }
 
         if (_currentLP <= 0)
@@ -147,14 +173,12 @@ public class Vidadovilao : MonoBehaviour
 
     private IEnumerator EfeitoVermelho()
     {
-        // Deixa o vilão vermelho
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             if (spriteRenderers[i] != null)
                 spriteRenderers[i].color = corDano;
         }
 
-        // Aguarda o tempo de invulnerabilidade
         yield return new WaitForSeconds(damageCooldown);
 
         // Restaura as cores originais
@@ -165,32 +189,6 @@ public class Vidadovilao : MonoBehaviour
         }
 
         efeitoInvulnerabilidade = null;
-    }
-
-    private IEnumerator CicloTornado()
-    {
-        while (_isAlive)
-        {
-            _animator.SetTrigger(TornadoHash);
-
-            yield return new WaitUntil(() =>
-                _animator.GetCurrentAnimatorStateInfo(0).IsName("Tornado")
-                || !_isAlive);
-
-            if (!_isAlive)
-                yield break;
-
-            while (_isAlive &&
-                   _animator.GetCurrentAnimatorStateInfo(0).IsName("Tornado") &&
-                   _animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f)
-            {
-                SpawnObjeto();
-
-                yield return new WaitForSeconds(intervalo);
-            }
-
-            yield return new WaitForSeconds(intervaloTornado);
-        }
     }
 
     private void SpawnObjeto()
@@ -209,7 +207,51 @@ public class Vidadovilao : MonoBehaviour
             pos,
             Quaternion.identity
         );
+    }
 
+    private void MovePlatform()
+    {
+        Vector2 target = _initialPosition + _moveTarget;
+
+        Vector2 destination = _isReturning
+            ? _initialPosition
+            : target;
+
+        if (Vector2.Distance(transform.position, destination) < 1f)
+        {
+            _isReturning = !_isReturning;
+
+            destination = _isReturning
+                ? _initialPosition
+                : target;
+        }
+
+        if (shouldFlip && moveSpeed > 0f)
+        {
+            transform.localScale = new Vector3(
+                _originalLocalScaleX * (_isReturning ? -1 : 1),
+                transform.localScale.y,
+                transform.localScale.z
+            );
+        }
+
+        Vector2 direction =
+            (destination - (Vector2)transform.position).normalized;
+
+        transform.position +=
+            (Vector3)(direction * moveSpeed * Time.deltaTime);
+
+        bool isMoving =
+            moveSpeed > 0f &&
+            Vector2.Distance(transform.position, destination) > 0.05f;
+
+        SetMovingAnimation(isMoving);
+    }
+
+    private void SetMovingAnimation(bool isMoving)
+    {
+        if (_animator != null)
+            _animator.SetBool(MovingHash, isMoving);
     }
 
     private void Die()
@@ -226,7 +268,10 @@ public class Vidadovilao : MonoBehaviour
             StopCoroutine(efeitoInvulnerabilidade);
 
         if (_animator != null)
+        {
+            _animator.SetBool(MovingHash, false);
             _animator.SetTrigger(DieHash);
+        }
 
         if (_collider2D != null)
             _collider2D.enabled = false;
@@ -236,6 +281,8 @@ public class Vidadovilao : MonoBehaviour
     {
         if (!_isAlive)
             return;
+
+        MovePlatform();
 
         tempo += Time.deltaTime;
 
