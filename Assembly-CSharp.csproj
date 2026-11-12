@@ -56,6 +56,7 @@
     <Compile Include="Assets\Códigos\TeletransporteBuraco.cs" />
     <Compile Include="Assets\audios\AudioTeclas.cs" />
     <Compile Include="Assets\Códigos\M.I. Manager.cs" />
+    <Compile Include="Assets\Códigos\AtaqueChaoEletrico.cs" />
     <Compile Include="Assets\Códigos\CheckpointManager.cs" />
     <Compile Include="Assets\Códigos\PlataformaMóvel.cs" />
     <Compile Include="Assets\audios\AudioColisao.cs" />
@@ -92,7 +93,9 @@
     <Compile Include="Assets\Códigos\GeradorBolhas.cs" />
     <Compile Include="Assets\audios\Estaca.cs" />
     <Compile Include="Assets\audios\EfeitoDano.cs" />
+    <Compile Include="Assets\Códigos\ChaoEletrico.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
+    <Compile Include="Assets\Códigos\TPdoBoss.cs" />
     <Compile Include="Assets\Códigos\Bolhas.cs" />
     <Compile Include="Assets\Códigos\FecharTelaInformacao.cs" />
     <Compile Include="Assets\Códigos\VilãoPrincipal.cs" />

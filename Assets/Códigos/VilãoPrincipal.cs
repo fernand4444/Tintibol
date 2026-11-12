@@ -1,9 +1,7 @@
-using System.Collections.Generic;
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading;
-using UnityEngine.VFX;
 
 public class Vidadovilao : MonoBehaviour
 {
@@ -14,6 +12,17 @@ public class Vidadovilao : MonoBehaviour
 
     private bool _isAlive;
     private int _currentLP;
+
+    [Header("Invulnerabilidade")]
+    private float _lastDamageTime = -Mathf.Infinity;
+    public float damageCooldown = 3f;
+
+    [Header("Efeito Visual de Dano")]
+    public Color corDano = Color.red;
+
+    private SpriteRenderer[] spriteRenderers;
+    private Color[] coresOriginais;
+    private Coroutine efeitoInvulnerabilidade;
 
     private static readonly int DieHash =
         Animator.StringToHash("Die");
@@ -29,12 +38,15 @@ public class Vidadovilao : MonoBehaviour
     [Header("Spawner")]
     public GameObject prefab;
     public Transform pontoDeSpawn;
+    public Transform pontoDeSpawn2;
+    public Transform pontoDeSpawn3;
+    public Transform pontoDeSpawn4;
+    public Transform pontoDeSpawn5;
+
     public int SpawnerCount = 10;
     public float intervalo = 2f;
     public float raio = 5f;
     public float intervaloTornado = 5f;
-
-    private List<GameObject> Spawner = new();
 
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
@@ -43,6 +55,18 @@ public class Vidadovilao : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
+
+        // Encontra todos os sprites do vilão
+        spriteRenderers =
+            GetComponentsInChildren<SpriteRenderer>(true);
+
+        // Guarda as cores originais
+        coresOriginais = new Color[spriteRenderers.Length];
+
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            coresOriginais[i] = spriteRenderers[i].color;
+        }
     }
 
     void Start()
@@ -79,6 +103,13 @@ public class Vidadovilao : MonoBehaviour
         if (!_isAlive || damage <= 0)
             return;
 
+        // Verifica a invulnerabilidade
+        if (Time.time - _lastDamageTime < damageCooldown)
+            return;
+
+        // Registra o momento do dano
+        _lastDamageTime = Time.time;
+
         _currentLP -= damage;
         _currentLP = Mathf.Clamp(_currentLP, 0, maxLP);
 
@@ -86,6 +117,9 @@ public class Vidadovilao : MonoBehaviour
 
         Debug.Log("Vilão recebeu " + damage +
                   " de dano. Vida restante: " + _currentLP);
+
+        // Ativa o efeito vermelho
+        AtivarEfeitoInvulnerabilidade();
 
         if (_currentLP <= maxLP / 2 && !_TornadoAtivado)
         {
@@ -98,6 +132,39 @@ public class Vidadovilao : MonoBehaviour
             Die();
             Destroy(gameObject);
         }
+    }
+
+    private void AtivarEfeitoInvulnerabilidade()
+    {
+        if (efeitoInvulnerabilidade != null)
+        {
+            StopCoroutine(efeitoInvulnerabilidade);
+        }
+
+        efeitoInvulnerabilidade =
+            StartCoroutine(EfeitoVermelho());
+    }
+
+    private IEnumerator EfeitoVermelho()
+    {
+        // Deixa o vilão vermelho
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+                spriteRenderers[i].color = corDano;
+        }
+
+        // Aguarda o tempo de invulnerabilidade
+        yield return new WaitForSeconds(damageCooldown);
+
+        // Restaura as cores originais
+        for (int i = 0; i < spriteRenderers.Length; i++)
+        {
+            if (spriteRenderers[i] != null)
+                spriteRenderers[i].color = coresOriginais[i];
+        }
+
+        efeitoInvulnerabilidade = null;
     }
 
     private IEnumerator CicloTornado()
@@ -131,24 +198,18 @@ public class Vidadovilao : MonoBehaviour
         if (prefab == null || pontoDeSpawn == null)
             return;
 
-        var go = prefab.GetComponent<EnemyController>();
-
-        if (Spawner.Count >= SpawnerCount) return;
-        
         Vector3 pos = pontoDeSpawn.position + new Vector3(
             UnityEngine.Random.Range(-raio, raio),
             UnityEngine.Random.Range(-raio, raio),
-            0f);
+            0f
+        );
 
-            Spawner.Add (Instantiate
-            (
+        GameObject novoObjeto = Instantiate(
             prefab,
             pos,
             Quaternion.identity
-            )
+        );
 
-            );
-        
     }
 
     private void Die()
@@ -160,6 +221,9 @@ public class Vidadovilao : MonoBehaviour
 
         if (TornadoCoroutine != null)
             StopCoroutine(TornadoCoroutine);
+
+        if (efeitoInvulnerabilidade != null)
+            StopCoroutine(efeitoInvulnerabilidade);
 
         if (_animator != null)
             _animator.SetTrigger(DieHash);

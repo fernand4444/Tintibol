@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtaquedoBolt
   dano: 10
-  tempoVida: 3
+  tempoVida: 0.2
 --- !u!96 &6018440607308744981
 TrailRenderer:
   serializedVersion: 4

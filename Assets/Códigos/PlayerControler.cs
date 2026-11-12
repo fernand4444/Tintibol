@@ -86,7 +86,6 @@ public class PlayerControler : MonoBehaviour
 
         _audioSource.playOnAwake = false;
 
-        // Guarda os Sprite Renderers do Bolti e dos filhos.
         todosSpriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
 
@@ -354,10 +353,6 @@ public class PlayerControler : MonoBehaviour
             spriteCuspe.flipX = direcao < 0f;
     }
 
-    // =================================
-    // SISTEMA DE VIDA
-    // =================================
-
     public void RecuperarVida(int quantidade)
     {
         _currentLP += quantidade;
@@ -399,10 +394,6 @@ public class PlayerControler : MonoBehaviour
 
         KillPlayer();
     }
-
-    // =================================
-    // EFEITO DE DANO
-    // =================================
 
     private void AtivarEfeitoDano()
     {

@@ -179,8 +179,6 @@ public class EnemyController : MonoBehaviour
             );
         }
 
-        OnEnemyDied?.Invoke();
-
         // Ativa a animação de morte.
         if (_animator != null)
         {
