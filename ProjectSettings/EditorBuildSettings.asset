@@ -31,12 +31,15 @@ EditorBuildSettings:
     guid: cad6bd6e5c849244ab06dace8051b212
   - enabled: 1
     path: Assets/cenas/tutorial.unity
-    guid: 78e8a35cfb22fff4bb0afe513bc5e77a
-  - enabled: 1
+    guid: 60354177adc8bee4e85136ba76ce60ee
+  - enabled: 0
     path: Assets/cenas/fase final.unity
     guid: cf10566fdbde25145801be17c6bde5a6
   - enabled: 1
     path: Assets/cenas/final 7.unity
     guid: d793ba03232d95547928a72cf5b40a6e
+  - enabled: 1
+    path: Assets/cenas/final 7.1.unity
+    guid: 6423614837c51e2419bfc34d57b4c438
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

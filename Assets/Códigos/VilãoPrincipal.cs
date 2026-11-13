@@ -1,5 +1,6 @@
 
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -65,9 +66,13 @@ public class Vidadovilao : MonoBehaviour
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
 
+    // Guarda todos os objetos criados pelo Spawner
+    private List<GameObject> objetosSpawnados = new List<GameObject>();
+
     [Header("Teletransporte do Jogador")]
     public GameObject jogador;
     public Transform pontoDeTeletransporte;
+    public float tempoParaTeletransportar = 5f;
 
     private void Awake()
     {
@@ -144,21 +149,72 @@ public class Vidadovilao : MonoBehaviour
         Debug.Log("Vilão recebeu " + damage +
                   " de dano. Vida restante: " + _currentLP);
 
+        if (_currentLP <= 0)
+        {
+            // Impede novos danos
+            _isAlive = false;
+
+            // Para as corrotinas
+            if (TornadoCoroutine != null)
+                StopCoroutine(TornadoCoroutine);
+
+            if (efeitoInvulnerabilidade != null)
+                StopCoroutine(efeitoInvulnerabilidade);
+
+            // Desativa o Animator do vilão
+            if (_animator != null)
+                _animator.enabled = false;
+
+            // Desativa o collider
+            if (_collider2D != null)
+                _collider2D.enabled = false;
+
+            // Faz o vilão desaparecer imediatamente
+            foreach (SpriteRenderer sprite in spriteRenderers)
+            {
+                if (sprite != null)
+                    sprite.enabled = false;
+            }
+
+            // Destrói todos os furacões criados
+            DestruirFuracoes();
+
+            Debug.Log("Vilão e furacões desapareceram!");
+
+            // Inicia a contagem de 5 segundos
+            StartCoroutine(AguardarTeletransporte());
+
+            return;
+        }
+
         AtivarEfeitoInvulnerabilidade();
 
         if (_currentLP <= maxLP / 2 && !_TornadoAtivado)
         {
             _TornadoAtivado = true;
         }
+    }
 
-        if (_currentLP <= 0)
+    private void DestruirFuracoes()
+    {
+        foreach (GameObject objeto in objetosSpawnados)
         {
-            Die();
-
-            TeletransportarJogador();
-
-            Destroy(gameObject);
+            if (objeto != null)
+            {
+                Destroy(objeto);
+            }
         }
+
+        objetosSpawnados.Clear();
+    }
+
+    private IEnumerator AguardarTeletransporte()
+    {
+        yield return new WaitForSeconds(tempoParaTeletransportar);
+
+        TeletransportarJogador();
+
+        Destroy(gameObject);
     }
 
     private void TeletransportarJogador()
@@ -206,7 +262,7 @@ public class Vidadovilao : MonoBehaviour
 
     private void SpawnObjeto()
     {
-        if (prefab == null || pontoDeSpawn == null)
+        if (prefab == null || pontoDeSpawn == null || !_isAlive)
             return;
 
         Vector3 pos = pontoDeSpawn.position + new Vector3(
@@ -220,6 +276,8 @@ public class Vidadovilao : MonoBehaviour
             pos,
             Quaternion.identity
         );
+
+        objetosSpawnados.Add(novoObjeto);
     }
 
     private void MovePlatform()

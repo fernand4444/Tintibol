@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 4bafbd588c944b74d9f7631ecd6882e0
+guid: 18db5103f6ef3564a9229a67b0fdb102
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1261746173519611556
-    second: coracionedeCaramelitos (1)_0
+      213: 36928260602808885
+    second: buracoverde1_0
+  - first:
+      213: -5244478695645372257
+    second: buracoverde1_1
+  - first:
+      213: -319102320508124274
+    second: buracoverde1_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -178,13 +184,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: coracionedeCaramelitos (1)_0
+      name: buracoverde1_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4478
-        width: 525
-        height: 483
+        x: 806
+        y: 480
+        width: 541
+        height: 196
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -193,8 +199,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c59b7aa4a806d7ee0800000000000000
-      internalID: -1261746173519611556
+      spriteID: 53a476fae02338000800000000000000
+      internalID: 36928260602808885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buracoverde1_1
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 661
+        width: 17
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9024f9a96ed737b0800000000000000
+      internalID: -5244478695645372257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: buracoverde1_2
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 664
+        width: 37
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e834c135122529bf0800000000000000
+      internalID: -319102320508124274
       vertices: []
       indices: 
       edges: []
@@ -213,7 +263,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      coracionedeCaramelitos (1)_0: -1261746173519611556
+      buracoverde1_0: 36928260602808885
+      buracoverde1_1: -5244478695645372257
+      buracoverde1_2: -319102320508124274
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

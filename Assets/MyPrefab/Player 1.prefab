@@ -277,23 +277,29 @@ MonoBehaviour:
   maxLP: 100
   damageCooldown: 1.5
   healthBar: {fileID: 0}
-  velocidade: 2
+  velocidade: 3
   forcaPulo: 7
   knockbackForce: 8
   knockbackUpwardFactor: 0.75
   noChao: 0
   andando: 0
   cuspindo: 0
+  camadaGalhos:
+    serializedVersion: 2
+    m_Bits: 0
+  velocidadeSoltarGalho: 1
   prefabCuspe: {fileID: 7956114843172764828, guid: 8efaefb1214feb2468d73057bd124148, type: 3}
   pontoCuspe: {fileID: 6008081166975004983}
   tempoCuspindo: 1
   tempoParaAtacar: 0.09
   velocidadeCuspe: 10
-  velocidadeNado: 5
+  velocidadeNado: 2
   resistenciaAgua: 1
   gravidadeAfundando: 0.5
   corNaAgua: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
   somPulo: {fileID: 8300000, guid: 3f34ff0551ff6ad40a580c72e30af3a1, type: 3}
+  somDano: {fileID: 0}
+  tempoVermelho: 0.2
 --- !u!60 &4106618282150816500
 PolygonCollider2D:
   m_ObjectHideFlags: 0
