@@ -432,7 +432,7 @@ Transform:
   m_GameObject: {fileID: 37337722}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.02, y: -0.12, z: 0}
+  m_LocalPosition: {x: -3.73, y: -0.14, z: 0}
   m_LocalScale: {x: 0.6799059, y: 0.6799059, z: 0.6799059}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -509,11 +509,11 @@ PrefabInstance:
       objectReference: {fileID: 1880557086}
     - target: {fileID: 1836598992912097656, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57.83
+      value: 50.99
       objectReference: {fileID: 0}
     - target: {fileID: 1836598992912097656, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -67.35
+      value: -66.46
       objectReference: {fileID: 0}
     - target: {fileID: 1836598992912097656, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: m_LocalPosition.z
@@ -552,9 +552,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 737d6e35a7d30e340a7714a60fb49170, type: 2}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: maxLP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 925986932}
+      objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: moveSpeed
       value: 2
@@ -565,6 +585,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: useTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: damageCooldown
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
@@ -1679,9 +1703,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf0864d6ea6d2e4f8821e95582b8138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtivarVilao
-  vilao: {fileID: 301951725}
-  tempoEspera: 8
-  sensorAtivado: 0
 --- !u!4 &301951733 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1836598992912097656, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
@@ -4635,9 +4656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cf0864d6ea6d2e4f8821e95582b8138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AtivarVilao
-  vilao: {fileID: 860922724}
-  tempoEspera: 8
-  sensorAtivado: 0
 --- !u!1001 &864379833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7257,7 +7275,7 @@ Transform:
   m_GameObject: {fileID: 1520002095}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -36.54, y: -60.96, z: 0}
+  m_LocalPosition: {x: -179.12, y: -59.5, z: 0}
   m_LocalScale: {x: 1, y: 19.609417, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8661,7 +8679,7 @@ Transform:
   m_GameObject: {fileID: 1887689746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.033855, y: -66.2888, z: -12.4836}
+  m_LocalPosition: {x: -30.326143, y: -66.7688, z: -12.4836}
   m_LocalScale: {x: 1, y: 1.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8790,9 +8808,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TeletransporteVilao
   furacao: {fileID: 860922724}
+  terceiraAnimacao: {fileID: 301951725}
   tempoInicial: 8
   tempoVilaoVisivel: 7.5
   tempoFuracaoVisivel: 4
+  tempoTerceiraAnimacao: 4
   intervalo: 4
   distanciaLateral: 2
   tempoDesaparecer: 0.5
@@ -10058,11 +10078,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 44.96
+      value: -31.4
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -67.72
+      value: -68.2
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -10736,7 +10756,7 @@ PrefabInstance:
       objectReference: {fileID: 925986932}
     - target: {fileID: 4131320177544690033, guid: a15c791baa038604b8d0f68fc3c92285, type: 3}
       propertyPath: intervalo
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4131320177544690033, guid: a15c791baa038604b8d0f68fc3c92285, type: 3}
       propertyPath: SpawnerCount
@@ -10754,6 +10774,10 @@ PrefabInstance:
       propertyPath: pontoDeSpawn3
       value: 
       objectReference: {fileID: 1078008710}
+    - target: {fileID: 4131320177544690033, guid: a15c791baa038604b8d0f68fc3c92285, type: 3}
+      propertyPath: damageCooldown
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6751716262119414908, guid: a15c791baa038604b8d0f68fc3c92285, type: 3}
       propertyPath: m_Name
       value: "Vil\xE3o Principal"
@@ -10964,9 +10988,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 737d6e35a7d30e340a7714a60fb49170, type: 2}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: maxLP
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: corDano.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: healthBar
       value: 
-      objectReference: {fileID: 925986932}
+      objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: moveSpeed
       value: 2
@@ -10977,6 +11021,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
       propertyPath: useTransform
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}
+      propertyPath: damageCooldown
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3293192499663475660, guid: e8f490bff3b9d6e4299fb1abfe41ee99, type: 3}

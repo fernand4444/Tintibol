@@ -1408,6 +1408,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1273514316254673748, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1199281896}
+    - target: {fileID: 1273514316254673748, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: tempoCuspindo
       value: 0.05
       objectReference: {fileID: 0}
@@ -12427,6 +12431,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5719139765329155581, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
   m_PrefabInstance: {fileID: 7154730782182229607}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1199281896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3747457926849193855, guid: facddb0e4a48ce745aa43d2057669d70, type: 3}
+  m_PrefabInstance: {fileID: 7154730782182229607}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347890dc3398f16469a5cf3eea5e307f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Barradevida
 --- !u!1001 &1202081923
 PrefabInstance:
   m_ObjectHideFlags: 0

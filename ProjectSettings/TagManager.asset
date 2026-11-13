@@ -8,11 +8,12 @@ TagManager:
   - Enemy
   - obstaculo
   - HitKill
+  - Galho
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Galhos
   - Water
   - UI
   - 
@@ -47,3 +48,4 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
+  m_MigratedRenderPipelines: []
