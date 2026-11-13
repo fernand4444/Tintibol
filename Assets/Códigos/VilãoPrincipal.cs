@@ -65,16 +65,18 @@ public class Vidadovilao : MonoBehaviour
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
 
+    [Header("Teletransporte do Jogador")]
+    public GameObject jogador;
+    public Transform pontoDeTeletransporte;
+
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
 
-        // Encontra todos os sprites do vilão
         spriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
 
-        // Guarda as cores originais
         coresOriginais = new Color[spriteRenderers.Length];
 
         for (int i = 0; i < spriteRenderers.Length; i++)
@@ -90,7 +92,6 @@ public class Vidadovilao : MonoBehaviour
 
         Initialize(maxLP, _currentLP);
 
-        // Inicializa a movimentação
         if (shouldFlip)
             _originalLocalScaleX = transform.localScale.x;
 
@@ -130,11 +131,9 @@ public class Vidadovilao : MonoBehaviour
         if (!_isAlive || damage <= 0)
             return;
 
-        // Verifica a invulnerabilidade
         if (Time.time - _lastDamageTime < damageCooldown)
             return;
 
-        // Registra o momento do dano
         _lastDamageTime = Time.time;
 
         _currentLP -= damage;
@@ -145,7 +144,6 @@ public class Vidadovilao : MonoBehaviour
         Debug.Log("Vilão recebeu " + damage +
                   " de dano. Vida restante: " + _currentLP);
 
-        // Ativa o efeito vermelho
         AtivarEfeitoInvulnerabilidade();
 
         if (_currentLP <= maxLP / 2 && !_TornadoAtivado)
@@ -156,8 +154,24 @@ public class Vidadovilao : MonoBehaviour
         if (_currentLP <= 0)
         {
             Die();
+
+            TeletransportarJogador();
+
             Destroy(gameObject);
         }
+    }
+
+    private void TeletransportarJogador()
+    {
+        if (jogador == null || pontoDeTeletransporte == null)
+        {
+            Debug.LogError("Jogador ou ponto de teletransporte não atribuído!");
+            return;
+        }
+
+        jogador.transform.position = pontoDeTeletransporte.position;
+
+        Debug.Log("Jogador teletransportado!");
     }
 
     private void AtivarEfeitoInvulnerabilidade()
@@ -181,7 +195,6 @@ public class Vidadovilao : MonoBehaviour
 
         yield return new WaitForSeconds(damageCooldown);
 
-        // Restaura as cores originais
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
             if (spriteRenderers[i] != null)

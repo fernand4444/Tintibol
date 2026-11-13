@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: 35fa0b58deb1df4489a2966fde8d3ca8
+guid: 73e237a58749bfb4bae9a1258ea8fd36
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2295756315634780376
-    second: fogo_0
-  - first:
-      213: -794899871583071607
-    second: fogo_1
-  - first:
-      213: 4088836924783256780
-    second: fogo_2
+      213: -4332686687242905492
+    second: caido_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -184,13 +178,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fogo_0
+      name: caido_0
       rect:
         serializedVersion: 2
-        x: 1374
-        y: 525
-        width: 200
-        height: 200
+        x: 1391
+        y: 574
+        width: 78
+        height: 80
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,52 +193,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 827babb5bc5d320e0800000000000000
-      internalID: -2295756315634780376
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fogo_1
-      rect:
-        serializedVersion: 2
-        x: 1482
-        y: 699
-        width: 54
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 982994247c2f7f4f0800000000000000
-      internalID: -794899871583071607
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fogo_2
-      rect:
-        serializedVersion: 2
-        x: 1528
-        y: 690
-        width: 30
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: cc4e43ef4877eb830800000000000000
-      internalID: 4088836924783256780
+      spriteID: c6892dbd9643fd3c0800000000000000
+      internalID: -4332686687242905492
       vertices: []
       indices: 
       edges: []
@@ -263,9 +213,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      fogo_0: -2295756315634780376
-      fogo_1: -794899871583071607
-      fogo_2: 4088836924783256780
+      caido_0: -4332686687242905492
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
