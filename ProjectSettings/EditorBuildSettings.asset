@@ -12,29 +12,26 @@ EditorBuildSettings:
     path: Assets/cenas/Cutscene.unity
     guid: 29192794dcedd1f49874609b3b39a517
   - enabled: 1
+    path: Assets/cenas/tutorial.unity
+    guid: 60354177adc8bee4e85136ba76ce60ee
+  - enabled: 1
     path: Assets/cenas/Jogo.unity
     guid: 6ebfc84fefaeb264897e78bbefd1b916
-  - enabled: 1
-    path: Assets/cenas/fasee 3.unity
-    guid: 88ddd22e2ae2a234fa8458369956f144
   - enabled: 1
     path: Assets/cenas/fase 2.1.unity
     guid: 5ae384e36521aa945a7cbe802c3b1a52
   - enabled: 1
-    path: Assets/cenas/fase 5.unity
-    guid: e0956c3e25dce1a409141909335faf50
+    path: Assets/cenas/fasee 3.unity
+    guid: 88ddd22e2ae2a234fa8458369956f144
   - enabled: 1
     path: Assets/cenas/fase 4.unity
     guid: 7a16cbe99bab6ba4884fe26216362b9e
   - enabled: 1
+    path: Assets/cenas/fase 5.unity
+    guid: e0956c3e25dce1a409141909335faf50
+  - enabled: 1
     path: Assets/cenas/fase 6.unity
     guid: cad6bd6e5c849244ab06dace8051b212
-  - enabled: 1
-    path: Assets/cenas/tutorial.unity
-    guid: 60354177adc8bee4e85136ba76ce60ee
-  - enabled: 0
-    path: Assets/cenas/fase final.unity
-    guid: cf10566fdbde25145801be17c6bde5a6
   - enabled: 1
     path: Assets/cenas/final 7.unity
     guid: d793ba03232d95547928a72cf5b40a6e

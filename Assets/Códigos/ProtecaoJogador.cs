@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class ProtecaoJogador : MonoBehaviour
@@ -7,13 +8,17 @@ public class ProtecaoJogador : MonoBehaviour
 
     private void Start()
     {
-        // Procura o escudo dentro do Player
+        // Procura o escudo dentro do jogador.
         Transform objetoEscudo = transform.Find("Escudo");
 
         if (objetoEscudo != null)
         {
             escudo = objetoEscudo.gameObject;
             escudo.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Escudo não encontrado dentro do jogador!");
         }
     }
 
@@ -25,6 +30,8 @@ public class ProtecaoJogador : MonoBehaviour
         {
             escudo.SetActive(true);
         }
+
+        Debug.Log("Proteção ativada!");
     }
 
     public bool EstaProtegido()
@@ -32,13 +39,20 @@ public class ProtecaoJogador : MonoBehaviour
         return protegido;
     }
 
-    public void UsarProtecao()
+    public bool UsarProtecao()
     {
+        if (!protegido)
+            return false;
+
         protegido = false;
 
         if (escudo != null)
         {
             escudo.SetActive(false);
         }
+
+        Debug.Log("Escudo bloqueou o dano!");
+
+        return true;
     }
 }

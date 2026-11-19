@@ -28,6 +28,7 @@ public class EnemyController : MonoBehaviour
 
     [Header("Áudio de Morte")]
     [SerializeField] private AudioClip somMorte;
+
     [SerializeField, Range(0f, 1f)]
     private float volumeMorte = 1f;
 
@@ -150,7 +151,6 @@ public class EnemyController : MonoBehaviour
 
         Debug.Log(gameObject.name + " morreu!");
 
-        // Toca o áudio em um objeto separado.
         if (somMorte != null)
         {
             GameObject objetoAudio =
@@ -179,14 +179,12 @@ public class EnemyController : MonoBehaviour
             );
         }
 
-        // Ativa a animação de morte.
         if (_animator != null)
         {
             _animator.SetBool(MovingHash, false);
             _animator.SetTrigger(DieHash);
         }
 
-        // Desativa a colisão.
         if (_collider2D != null)
             _collider2D.enabled = false;
 
@@ -226,10 +224,7 @@ public class EnemyController : MonoBehaviour
         if (player == null || _collider2D == null)
             return;
 
-        Rigidbody2D playerRigidbody = other.rigidbody;
-
-        bool contactIsAtTop = false;
-
+        // Verifica se o contato aconteceu na parte superior.
         float topLimit =
             _collider2D.bounds.max.y - stompTopTolerance;
 
@@ -237,38 +232,26 @@ public class EnemyController : MonoBehaviour
         {
             if (other.GetContact(i).point.y >= topLimit)
             {
-                contactIsAtTop = true;
-                break;
+                // Não causa dano ao vilão nem ao jogador pelo topo.
+                return;
             }
         }
 
-        if (contactIsAtTop)
-        {
-            if (player.HasJumped &&
-                playerRigidbody != null &&
-                playerRigidbody.linearVelocity.y < 0f &&
-                !_hasStompedPlayer)
-            {
-                _hasStompedPlayer = true;
-
-                player.ConsumeJump();
-
-                TakeDamage(stompDamage);
-
-                playerRigidbody.linearVelocity = new Vector2(
-                    playerRigidbody.linearVelocity.x,
-                    Mathf.Max(
-                        playerRigidbody.linearVelocity.y,
-                        stompBounce
-                    )
-                );
-            }
-
-            return;
-        }
-
+        // Dano por contato lateral.
         if (allowSideDamage)
+        {
+            ProtecaoJogador protecao =
+                player.GetComponent<ProtecaoJogador>();
+
+            // O escudo bloqueia o primeiro ataque.
+            if (protecao != null && protecao.UsarProtecao())
+            {
+                return;
+            }
+
+            // Sem escudo, o jogador recebe dano normalmente.
             player.TakeDamage(damage);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
