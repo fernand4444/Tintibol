@@ -260,3 +260,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coracao
   vida: 20
+  somColeta: {fileID: 8300000, guid: 14b9e9a17696c3544ac0c7aded102efe, type: 3}

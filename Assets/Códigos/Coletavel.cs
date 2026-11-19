@@ -21,6 +21,8 @@ public class Coletavel : MonoBehaviour
             }
 
             Destroy(gameObject);
+
+            AudioSource.PlayClipAtPoint(somColeta, transform.position);
         }
     }
 }

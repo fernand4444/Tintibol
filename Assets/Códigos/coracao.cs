@@ -1,8 +1,12 @@
+
 using UnityEngine;
 
 public class Coracao : MonoBehaviour
 {
     public int vida = 20;
+
+    [Header("Audio da Coleta")]
+    public AudioClip somColeta;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -13,6 +17,12 @@ public class Coracao : MonoBehaviour
             if (player != null)
             {
                 player.RecuperarVida(vida);
+
+                // Toca o som da coleta
+                if (somColeta != null)
+                {
+                    AudioSource.PlayClipAtPoint(somColeta, transform.position);
+                }
 
                 Destroy(gameObject);
             }

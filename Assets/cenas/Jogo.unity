@@ -540,7 +540,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4415687976384183028, guid: 69de4717c9fa8524e9223b834762fa12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1093,7 +1093,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4415687976384183028, guid: 69de4717c9fa8524e9223b834762fa12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2447,7 +2447,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4415687976384183028, guid: 69de4717c9fa8524e9223b834762fa12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4521,6 +4521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarInformacao
   telaInformacao: {fileID: 2124472316}
+  somInformacao: {fileID: 8300000, guid: 6cbc80c5019780349b2dd3bcfdb0a425, type: 3}
 --- !u!61 &1323714323
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5088,6 +5089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MostrarInformacao
   telaInformacao: {fileID: 456350709}
+  somInformacao: {fileID: 0}
 --- !u!61 &1428592628
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6249,6 +6251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "cora\xE7ao de vida"
       objectReference: {fileID: 0}
+    - target: {fileID: 5667934949573100370, guid: 2e10c6c36d48dc949bdc92fa58e58d67, type: 3}
+      propertyPath: somColeta
+      value: 
+      objectReference: {fileID: 8300000, guid: 14b9e9a17696c3544ac0c7aded102efe, type: 3}
     - target: {fileID: 6469891725841322256, guid: 2e10c6c36d48dc949bdc92fa58e58d67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.79155
@@ -6752,7 +6758,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -3
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4415687976384183028, guid: 69de4717c9fa8524e9223b834762fa12, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -7145,7 +7151,7 @@ Transform:
   m_GameObject: {fileID: 1887689746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.266144, y: -67.1088, z: -12.4836}
+  m_LocalPosition: {x: -26.406143, y: -66.8488, z: -12.4836}
   m_LocalScale: {x: 1, y: 1.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8099,11 +8105,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -26.34
+      value: -27.48
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -68.54
+      value: -68.28
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

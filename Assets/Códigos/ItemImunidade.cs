@@ -1,8 +1,13 @@
+
 using UnityEngine;
 
 public class ItemImunidade : MonoBehaviour
 {
+    [Header("Escudo")]
     public GameObject escudo;
+
+    [Header("Audio da Coleta")]
+    public AudioClip somColeta;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -13,6 +18,12 @@ public class ItemImunidade : MonoBehaviour
             if (protecao != null)
             {
                 protecao.AtivarProtecao();
+            }
+
+            // Toca o som da coleta
+            if (somColeta != null)
+            {
+                AudioSource.PlayClipAtPoint(somColeta, transform.position);
             }
 
             Destroy(gameObject);
