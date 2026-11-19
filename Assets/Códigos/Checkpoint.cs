@@ -4,6 +4,7 @@ using UnityEngine;
 public class Checkpoint : MonoBehaviour
 {
     private bool ativado = false;
+    private AudioSource audioSource;
 
     [Header("Cores do Checkpoint")]
     public SpriteRenderer imagem;
@@ -12,6 +13,25 @@ public class Checkpoint : MonoBehaviour
 
     [Header("Áudio do Checkpoint")]
     public AudioClip somCheckpoint;
+
+    [Range(0f, 5f)]
+    public float volumeAudio = 2f;
+
+    private void Awake()
+    {
+        // Cria ou procura o AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Configura o áudio para ser 2D
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
+        audioSource.loop = false;
+    }
 
     private void Start()
     {
@@ -42,10 +62,10 @@ public class Checkpoint : MonoBehaviour
                 imagem.color = corAtivada;
             }
 
-            // Toca o áudio diretamente.
+            // Reproduz o áudio em 2D
             if (somCheckpoint != null)
             {
-                AudioSource.PlayClipAtPoint(somCheckpoint, transform.position);
+                audioSource.PlayOneShot(somCheckpoint, volumeAudio);
             }
 
             Debug.Log("Checkpoint ativado!");

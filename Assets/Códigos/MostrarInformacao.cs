@@ -8,7 +8,28 @@ public class MostrarInformacao : MonoBehaviour
     [Header("Audio da Informacao")]
     public AudioClip somInformacao;
 
+    [Range(0f, 5f)]
+    public float volumeAudio = 2f;
+
+    private AudioSource audioSource;
     private bool jaMostrou = false;
+
+    private void Awake()
+    {
+        // Procura ou cria um AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Configura o áudio como 2D
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 0f;
+        audioSource.loop = false;
+        audioSource.ignoreListenerPause = true;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,12 +42,12 @@ public class MostrarInformacao : MonoBehaviour
             {
                 telaInformacao.SetActive(true);
 
-                // Toca o som quando a informação aparece
+                // Toca o som antes de pausar o jogo
                 if (somInformacao != null)
                 {
-                    AudioSource.PlayClipAtPoint(
+                    audioSource.PlayOneShot(
                         somInformacao,
-                        transform.position
+                        volumeAudio
                     );
                 }
 
