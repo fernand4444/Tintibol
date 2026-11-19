@@ -14,6 +14,12 @@ public class Vidadovilao : MonoBehaviour
     private bool _isAlive;
     private int _currentLP;
 
+    [Header("Áudios das Animações")]
+    public AudioClip audioAnimacaoInicial;
+    public AudioClip audioTransformacao;
+
+    private AudioSource audioSource;
+
     [Header("Invulnerabilidade")]
     private float _lastDamageTime = -Mathf.Infinity;
     public float damageCooldown = 3f;
@@ -66,7 +72,6 @@ public class Vidadovilao : MonoBehaviour
     private bool _TornadoAtivado = false;
     private Coroutine TornadoCoroutine;
 
-    // Guarda todos os objetos criados pelo Spawner
     private List<GameObject> objetosSpawnados = new List<GameObject>();
 
     [Header("Teletransporte do Jogador")]
@@ -78,6 +83,18 @@ public class Vidadovilao : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
+
+        // Configuração do AudioSource
+        audioSource = GetComponent<AudioSource>();
+
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        audioSource.playOnAwake = false;
+        audioSource.loop = false;
+        audioSource.spatialBlend = 0f;
 
         spriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
@@ -108,6 +125,24 @@ public class Vidadovilao : MonoBehaviour
         _initialPosition = transform.position;
 
         SetMovingAnimation(false);
+    }
+
+    // Áudio da animação inicial
+    public void TocarAudioInicial()
+    {
+        if (_isAlive && audioAnimacaoInicial != null)
+        {
+            audioSource.PlayOneShot(audioAnimacaoInicial);
+        }
+    }
+
+    // Áudio compartilhado pelas duas animações de transformação
+    public void TocarAudioTransformacao()
+    {
+        if (_isAlive && audioTransformacao != null)
+        {
+            audioSource.PlayOneShot(audioTransformacao);
+        }
     }
 
     public void Initialize(int maxLP, int currentLP)
@@ -151,37 +186,33 @@ public class Vidadovilao : MonoBehaviour
 
         if (_currentLP <= 0)
         {
-            // Impede novos danos
             _isAlive = false;
 
-            // Para as corrotinas
             if (TornadoCoroutine != null)
                 StopCoroutine(TornadoCoroutine);
 
             if (efeitoInvulnerabilidade != null)
                 StopCoroutine(efeitoInvulnerabilidade);
 
-            // Desativa o Animator do vilão
             if (_animator != null)
                 _animator.enabled = false;
 
-            // Desativa o collider
             if (_collider2D != null)
                 _collider2D.enabled = false;
 
-            // Faz o vilão desaparecer imediatamente
+            if (audioSource != null)
+                audioSource.Stop();
+
             foreach (SpriteRenderer sprite in spriteRenderers)
             {
                 if (sprite != null)
                     sprite.enabled = false;
             }
 
-            // Destrói todos os furacões criados
             DestruirFuracoes();
 
             Debug.Log("Vilão e furacões desapareceram!");
 
-            // Inicia a contagem de 5 segundos
             StartCoroutine(AguardarTeletransporte());
 
             return;
@@ -337,6 +368,9 @@ public class Vidadovilao : MonoBehaviour
 
         if (efeitoInvulnerabilidade != null)
             StopCoroutine(efeitoInvulnerabilidade);
+
+        if (audioSource != null)
+            audioSource.Stop();
 
         if (_animator != null)
         {

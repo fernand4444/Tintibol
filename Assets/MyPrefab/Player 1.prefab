@@ -277,7 +277,7 @@ MonoBehaviour:
   maxLP: 100
   damageCooldown: 1.5
   healthBar: {fileID: 0}
-  velocidade: 3
+  velocidade: 2
   forcaPulo: 7
   knockbackForce: 8
   knockbackUpwardFactor: 0.75
@@ -298,7 +298,8 @@ MonoBehaviour:
   gravidadeAfundando: 0.5
   corNaAgua: {r: 0.21568629, g: 0.21568629, b: 0.21568629, a: 1}
   somPulo: {fileID: 8300000, guid: 3f34ff0551ff6ad40a580c72e30af3a1, type: 3}
-  somDano: {fileID: 0}
+  somDano: {fileID: 8300000, guid: b7d5a2e0a3d26ff47a45e11b7d04de27, type: 3}
+  somTiro: {fileID: 8300000, guid: 658d154748191b347a8dafdefa228025, type: 3}
   tempoVermelho: 0.2
 --- !u!60 &4106618282150816500
 PolygonCollider2D:
@@ -506,7 +507,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 3f34ff0551ff6ad40a580c72e30af3a1, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.385
   m_Pitch: 1
   Loop: 0
   Mute: 0

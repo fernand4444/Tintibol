@@ -68,6 +68,7 @@
     <Compile Include="Assets\Códigos\BaseAnimacao.cs" />
     <Compile Include="Assets\Códigos\Respawn.cs" />
     <Compile Include="Assets\Códigos\TextoInicio.cs" />
+    <Compile Include="Assets\audios\tocarmusicadaarea.cs" />
     <Compile Include="Assets\Códigos\FinalDaFase.cs" />
     <Compile Include="Assets\Códigos\MostrarInformacao.cs" />
     <Compile Include="Assets\Códigos\LuzPiscando.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="Assets\Códigos\coracao.cs" />
     <Compile Include="Assets\Códigos\BotaoMenuInicial.cs" />
     <Compile Include="Assets\Códigos\TPdoBoss.cs" />
+    <Compile Include="Assets\audios\sair.cs" />
     <Compile Include="Assets\Códigos\Bolhas.cs" />
     <Compile Include="Assets\Códigos\FecharTelaInformacao.cs" />
     <Compile Include="Assets\Códigos\VilãoPrincipal.cs" />

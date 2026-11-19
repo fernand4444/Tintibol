@@ -35,9 +35,11 @@ public class AudioManager : MonoBehaviour
 
         musica.loop = true;
         musica.playOnAwake = false;
+        musica.spatialBlend = 0f;
 
         efeitos.loop = false;
         efeitos.playOnAwake = false;
+        efeitos.spatialBlend = 0f;
     }
 
     private void Start()
@@ -47,11 +49,26 @@ public class AudioManager : MonoBehaviour
 
     public void TocarSonsdeFundo()
     {
-        if (SonsdeFundo != null)
-        {
-            musica.clip = SonsdeFundo;
-            musica.Play();
-        }
+        TrocarMusica(SonsdeFundo);
+    }
+
+    // Troca a música atual por outra
+    public void TrocarMusica(AudioClip novaMusica)
+    {
+        if (novaMusica == null)
+            return;
+
+        if (musica.clip == novaMusica && musica.isPlaying)
+            return;
+
+        musica.Stop();
+        musica.clip = novaMusica;
+        musica.Play();
+    }
+
+    public void PararMusica()
+    {
+        musica.Stop();
     }
 
     public void TocarSomdePulo()

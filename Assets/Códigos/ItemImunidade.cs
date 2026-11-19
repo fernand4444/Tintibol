@@ -9,6 +9,9 @@ public class ItemImunidade : MonoBehaviour
     [Header("Audio da Coleta")]
     public AudioClip somColeta;
 
+    [Range(0f, 5f)]
+    public float volumeAudio = 2f;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -20,12 +23,22 @@ public class ItemImunidade : MonoBehaviour
                 protecao.AtivarProtecao();
             }
 
-            // Toca o som da coleta
+            // Cria um objeto separado para reproduzir o áudio
             if (somColeta != null)
             {
-                AudioSource.PlayClipAtPoint(somColeta, transform.position);
+                GameObject objetoAudio = new GameObject("AudioColetaEscudo");
+
+                AudioSource audioSource = objetoAudio.AddComponent<AudioSource>();
+
+                audioSource.clip = somColeta;
+                audioSource.volume = volumeAudio;
+                audioSource.spatialBlend = 0f;
+                audioSource.Play();
+
+                Destroy(objetoAudio, somColeta.length);
             }
 
+            // Destrói o item coletado
             Destroy(gameObject);
         }
     }
