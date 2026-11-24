@@ -5523,11 +5523,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 315968366348734300, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_Size.x
-      value: 4.6800404
+      value: 3.2612045
       objectReference: {fileID: 0}
     - target: {fileID: 315968366348734300, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_Offset.x
-      value: 0.15565288
+      value: 0.86507094
       objectReference: {fileID: 0}
     - target: {fileID: 315968366348734300, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.x
@@ -5540,6 +5540,10 @@ PrefabInstance:
     - target: {fileID: 720074829542270945, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_Name
       value: portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897445576991600292, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
+      propertyPath: proximaCena
+      value: fase 2.1
       objectReference: {fileID: 0}
     - target: {fileID: 5936208819541261818, guid: 201c60840fa0fe740a635cbeba136036, type: 3}
       propertyPath: m_Sprite
@@ -7607,7 +7611,7 @@ Transform:
   m_GameObject: {fileID: 1887689746}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -24.706144, y: -66.758804, z: -12.4836}
+  m_LocalPosition: {x: -23.726143, y: -66.9488, z: -12.4836}
   m_LocalScale: {x: 1, y: 1.7125, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8821,11 +8825,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -25.78
+      value: -24.8
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -68.19
+      value: -68.38
       objectReference: {fileID: 0}
     - target: {fileID: 5456120796489205691, guid: df8e4a9841557e24c99a4d44095b3cd7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

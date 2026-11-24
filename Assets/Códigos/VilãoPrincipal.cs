@@ -19,6 +19,7 @@ public class Vidadovilao : MonoBehaviour
     public AudioClip audioTransformacao;
 
     private AudioSource audioSource;
+    private string animacaoAtual = "";
 
     [Header("Invulnerabilidade")]
     private float _lastDamageTime = -Mathf.Infinity;
@@ -84,7 +85,6 @@ public class Vidadovilao : MonoBehaviour
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
 
-        // Configuração do AudioSource
         audioSource = GetComponent<AudioSource>();
 
         if (audioSource == null)
@@ -93,7 +93,7 @@ public class Vidadovilao : MonoBehaviour
         }
 
         audioSource.playOnAwake = false;
-        audioSource.loop = false;
+        audioSource.loop = true;
         audioSource.spatialBlend = 0f;
 
         spriteRenderers =
@@ -127,21 +127,57 @@ public class Vidadovilao : MonoBehaviour
         SetMovingAnimation(false);
     }
 
-    // Áudio da animação inicial
-    public void TocarAudioInicial()
+    private void AtualizarAudio()
     {
-        if (_isAlive && audioAnimacaoInicial != null)
+        if (!_isAlive || _animator == null || audioSource == null)
         {
-            audioSource.PlayOneShot(audioAnimacaoInicial);
+            audioSource.Stop();
+            return;
         }
-    }
 
-    // Áudio compartilhado pelas duas animações de transformação
-    public void TocarAudioTransformacao()
-    {
-        if (_isAlive && audioTransformacao != null)
+        AnimatorStateInfo estado;
+
+        // Verifica também a animação que está entrando
+        if (_animator.IsInTransition(0))
         {
-            audioSource.PlayOneShot(audioTransformacao);
+            estado = _animator.GetNextAnimatorStateInfo(0);
+        }
+        else
+        {
+            estado = _animator.GetCurrentAnimatorStateInfo(0);
+        }
+
+        AudioClip audioDesejado = null;
+        string novoEstado = "";
+
+        // Animação normal
+        if (estado.IsName("Animçaovilao"))
+        {
+            audioDesejado = audioAnimacaoInicial;
+            novoEstado = "Normal";
+        }
+
+        // Animação de transformação
+        else if (estado.IsName("Tornado"))
+        {
+            audioDesejado = audioTransformacao;
+            novoEstado = "Tornado";
+        }
+
+        // Só troca o áudio quando o estado muda
+        if (novoEstado == animacaoAtual)
+            return;
+
+        animacaoAtual = novoEstado;
+
+        audioSource.Stop();
+        audioSource.clip = null;
+
+        if (audioDesejado != null)
+        {
+            audioSource.clip = audioDesejado;
+            audioSource.loop = true;
+            audioSource.Play();
         }
     }
 
@@ -206,7 +242,9 @@ public class Vidadovilao : MonoBehaviour
             foreach (SpriteRenderer sprite in spriteRenderers)
             {
                 if (sprite != null)
+                {
                     sprite.enabled = false;
+                }
             }
 
             DestruirFuracoes();
@@ -386,6 +424,8 @@ public class Vidadovilao : MonoBehaviour
     {
         if (!_isAlive)
             return;
+
+        AtualizarAudio();
 
         MovePlatform();
 
