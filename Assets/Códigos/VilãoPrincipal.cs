@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Vidadovilao : MonoBehaviour
 {
@@ -14,12 +15,17 @@ public class Vidadovilao : MonoBehaviour
     private bool _isAlive;
     private int _currentLP;
 
-    [Header("Áudios das Animações")]
-    public AudioClip audioAnimacaoInicial;
-    public AudioClip audioTransformacao;
+    [Header("Áudio do Vilão")]
+    public AudioClip audioVilao;
 
-    private AudioSource audioSource;
-    private string animacaoAtual = "";
+    [Range(0f, 5f)]
+    public float volumeAudioVilao = 1f;
+
+    public AudioMixer audioMixerVilao;
+    public AudioMixerGroup grupoAudioVilao;
+    public string parametroVolumeVilao = "VolumeVilao";
+
+    private AudioSource audioSourceVilao;
 
     [Header("Invulnerabilidade")]
     private float _lastDamageTime = -Mathf.Infinity;
@@ -85,16 +91,18 @@ public class Vidadovilao : MonoBehaviour
         _animator = GetComponent<Animator>();
         _collider2D = GetComponent<Collider2D>();
 
-        audioSource = GetComponent<AudioSource>();
+        audioSourceVilao = GetComponent<AudioSource>();
 
-        if (audioSource == null)
+        if (audioSourceVilao == null)
         {
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSourceVilao = gameObject.AddComponent<AudioSource>();
         }
 
-        audioSource.playOnAwake = false;
-        audioSource.loop = true;
-        audioSource.spatialBlend = 0f;
+        audioSourceVilao.playOnAwake = false;
+        audioSourceVilao.loop = true;
+        audioSourceVilao.spatialBlend = 0f;
+        audioSourceVilao.clip = audioVilao;
+        audioSourceVilao.outputAudioMixerGroup = grupoAudioVilao;
 
         spriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
@@ -125,59 +133,52 @@ public class Vidadovilao : MonoBehaviour
         _initialPosition = transform.position;
 
         SetMovingAnimation(false);
+
+        AtualizarAudioVilao();
     }
 
-    private void AtualizarAudio()
+    private void AtualizarAudioVilao()
     {
-        if (!_isAlive || _animator == null || audioSource == null)
+        if (!_isAlive || audioSourceVilao == null)
         {
-            audioSource.Stop();
+            if (audioSourceVilao != null)
+                audioSourceVilao.Stop();
+
             return;
         }
 
-        AnimatorStateInfo estado;
-
-        // Verifica também a animação que está entrando
-        if (_animator.IsInTransition(0))
+        if (audioMixerVilao != null)
         {
-            estado = _animator.GetNextAnimatorStateInfo(0);
+            float volumeDB = volumeAudioVilao <= 0f
+                ? -80f
+                : 20f * Mathf.Log10(volumeAudioVilao);
+
+            audioMixerVilao.SetFloat(
+                parametroVolumeVilao,
+                volumeDB
+            );
         }
         else
         {
-            estado = _animator.GetCurrentAnimatorStateInfo(0);
+            audioSourceVilao.volume =
+                Mathf.Clamp01(volumeAudioVilao);
         }
 
-        AudioClip audioDesejado = null;
-        string novoEstado = "";
-
-        // Animação normal
-        if (estado.IsName("Animçaovilao"))
+        // Verifica se o áudio da transformação está ativo.
+        if (TeletransporteVilao.TransformacaoAtiva)
         {
-            audioDesejado = audioAnimacaoInicial;
-            novoEstado = "Normal";
-        }
+            if (audioSourceVilao.isPlaying)
+                audioSourceVilao.Stop();
 
-        // Animação de transformação
-        else if (estado.IsName("Tornado"))
-        {
-            audioDesejado = audioTransformacao;
-            novoEstado = "Tornado";
-        }
-
-        // Só troca o áudio quando o estado muda
-        if (novoEstado == animacaoAtual)
             return;
+        }
 
-        animacaoAtual = novoEstado;
-
-        audioSource.Stop();
-        audioSource.clip = null;
-
-        if (audioDesejado != null)
+        // Quando a transformação termina, o áudio do vilão retorna.
+        if (audioVilao != null && !audioSourceVilao.isPlaying)
         {
-            audioSource.clip = audioDesejado;
-            audioSource.loop = true;
-            audioSource.Play();
+            audioSourceVilao.clip = audioVilao;
+            audioSourceVilao.loop = true;
+            audioSourceVilao.Play();
         }
     }
 
@@ -230,21 +231,21 @@ public class Vidadovilao : MonoBehaviour
             if (efeitoInvulnerabilidade != null)
                 StopCoroutine(efeitoInvulnerabilidade);
 
+            if (audioSourceVilao != null)
+                audioSourceVilao.Stop();
+
+            TeletransporteVilao.DefinirAudioTransformacao(false);
+
             if (_animator != null)
                 _animator.enabled = false;
 
             if (_collider2D != null)
                 _collider2D.enabled = false;
 
-            if (audioSource != null)
-                audioSource.Stop();
-
             foreach (SpriteRenderer sprite in spriteRenderers)
             {
                 if (sprite != null)
-                {
                     sprite.enabled = false;
-                }
             }
 
             DestruirFuracoes();
@@ -407,8 +408,10 @@ public class Vidadovilao : MonoBehaviour
         if (efeitoInvulnerabilidade != null)
             StopCoroutine(efeitoInvulnerabilidade);
 
-        if (audioSource != null)
-            audioSource.Stop();
+        if (audioSourceVilao != null)
+            audioSourceVilao.Stop();
+
+        TeletransporteVilao.DefinirAudioTransformacao(false);
 
         if (_animator != null)
         {
@@ -425,7 +428,7 @@ public class Vidadovilao : MonoBehaviour
         if (!_isAlive)
             return;
 
-        AtualizarAudio();
+        AtualizarAudioVilao();
 
         MovePlatform();
 

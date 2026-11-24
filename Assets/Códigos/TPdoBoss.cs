@@ -1,12 +1,33 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.Audio;
 
+[RequireComponent(typeof(AudioSource))]
 public class TeletransporteVilao : MonoBehaviour
 {
     [Header("Referência das Animações")]
     public GameObject furacao;
     public GameObject terceiraAnimacao;
+
+    [Header("Áudio das Transformações")]
+    public AudioClip audioTransformacao;
+
+    [Range(0f, 5f)]
+    public float volumeTransformacao = 1f;
+
+    public AudioMixer audioMixerTransformacao;
+    public AudioMixerGroup grupoAudioTransformacao;
+    public string parametroVolumeTransformacao = "VolumeTornado";
+
+    private AudioSource audioSourceTransformacao;
+
+    public static bool TransformacaoAtiva { get; private set; }
+
+    public static void DefinirAudioTransformacao(bool ativo)
+    {
+        TransformacaoAtiva = ativo;
+    }
 
     [Header("Tempo de Alternância")]
     public float tempoInicial = 8f;
@@ -34,6 +55,20 @@ public class TeletransporteVilao : MonoBehaviour
     private Collider2D[] colisoresVilao;
     private Collider2D[] colisoresFuracao;
     private Collider2D[] colisoresTerceira;
+
+    private void Awake()
+    {
+        // Cria um AudioSource separado do áudio do vilão principal.
+        audioSourceTransformacao = gameObject.AddComponent<AudioSource>();
+
+        audioSourceTransformacao.playOnAwake = false;
+        audioSourceTransformacao.loop = true;
+        audioSourceTransformacao.spatialBlend = 0f;
+        audioSourceTransformacao.clip = audioTransformacao;
+        audioSourceTransformacao.outputAudioMixerGroup = grupoAudioTransformacao;
+
+        TransformacaoAtiva = false;
+    }
 
     private void Start()
     {
@@ -71,18 +106,55 @@ public class TeletransporteVilao : MonoBehaviour
         colisoresTerceira =
             terceiraAnimacao.GetComponentsInChildren<Collider2D>(true);
 
-        // Vilão começa visível
+        // Vilão começa visível.
         AlterarVisibilidadeImediata(spritesVilao, 1f);
         AtivarColisoes(colisoresVilao, true);
 
-        // Outras animações começam invisíveis
+        // Outras animações começam invisíveis.
         AlterarVisibilidadeImediata(spritesFuracao, 0f);
         AlterarVisibilidadeImediata(spritesTerceira, 0f);
 
         AtivarColisoes(colisoresFuracao, false);
         AtivarColisoes(colisoresTerceira, false);
 
+        DefinirAudioTransformacao(false);
+
         StartCoroutine(ControlarCiclo());
+    }
+
+    private void Update()
+    {
+        if (audioMixerTransformacao != null)
+        {
+            float volumeDB = volumeTransformacao <= 0f
+                ? -80f
+                : 20f * Mathf.Log10(volumeTransformacao);
+
+            audioMixerTransformacao.SetFloat(
+                parametroVolumeTransformacao,
+                volumeDB
+            );
+        }
+        else
+        {
+            audioSourceTransformacao.volume =
+                Mathf.Clamp01(volumeTransformacao);
+        }
+
+        if (TransformacaoAtiva)
+        {
+            if (audioTransformacao != null &&
+                !audioSourceTransformacao.isPlaying)
+            {
+                audioSourceTransformacao.clip = audioTransformacao;
+                audioSourceTransformacao.loop = true;
+                audioSourceTransformacao.Play();
+            }
+        }
+        else if (audioSourceTransformacao.isPlaying)
+        {
+            audioSourceTransformacao.Stop();
+        }
     }
 
     private IEnumerator ControlarCiclo()
@@ -91,7 +163,7 @@ public class TeletransporteVilao : MonoBehaviour
 
         while (true)
         {
-            // VILÃO DESAPARECE
+            // VILÃO DESAPARECE.
             AtivarColisoes(colisoresVilao, false);
 
             yield return StartCoroutine(
@@ -100,7 +172,10 @@ public class TeletransporteVilao : MonoBehaviour
                 )
             );
 
-            // FURACÃO APARECE
+            // Começa o áudio da transformação.
+            DefinirAudioTransformacao(true);
+
+            // FURACÃO APARECE.
             yield return StartCoroutine(
                 AlterarTransparencia(
                     spritesFuracao, 0f, 1f, tempoAparecer
@@ -111,7 +186,7 @@ public class TeletransporteVilao : MonoBehaviour
 
             yield return new WaitForSeconds(tempoFuracaoVisivel);
 
-            // FURACÃO DESAPARECE
+            // FURACÃO DESAPARECE.
             AtivarColisoes(colisoresFuracao, false);
 
             yield return StartCoroutine(
@@ -120,7 +195,8 @@ public class TeletransporteVilao : MonoBehaviour
                 )
             );
 
-            // TERCEIRA ANIMAÇÃO APARECE
+            // TERCEIRA ANIMAÇÃO APARECE.
+            // O mesmo áudio do furacão continua tocando.
             yield return StartCoroutine(
                 AlterarTransparencia(
                     spritesTerceira, 0f, 1f, tempoAparecer
@@ -131,7 +207,7 @@ public class TeletransporteVilao : MonoBehaviour
 
             yield return new WaitForSeconds(tempoTerceiraAnimacao);
 
-            // TERCEIRA ANIMAÇÃO DESAPARECE
+            // TERCEIRA ANIMAÇÃO DESAPARECE.
             AtivarColisoes(colisoresTerceira, false);
 
             yield return StartCoroutine(
@@ -140,7 +216,10 @@ public class TeletransporteVilao : MonoBehaviour
                 )
             );
 
-            // VILÃO PRINCIPAL REAPARECE
+            // Encerra o áudio da transformação.
+            DefinirAudioTransformacao(false);
+
+            // VILÃO PRINCIPAL REAPARECE.
             yield return StartCoroutine(
                 AlterarTransparencia(
                     spritesVilao, 0f, 1f, tempoAparecer
@@ -149,7 +228,7 @@ public class TeletransporteVilao : MonoBehaviour
 
             AtivarColisoes(colisoresVilao, true);
 
-            // VILÃO PERSEGUE O JOGADOR
+            // VILÃO PERSEGUE O JOGADOR.
             yield return StartCoroutine(PeriodoVilaoAtivo());
         }
     }
@@ -258,5 +337,13 @@ public class TeletransporteVilao : MonoBehaviour
         }
 
         AlterarVisibilidadeImediata(lista, fim);
+    }
+
+    private void OnDisable()
+    {
+        DefinirAudioTransformacao(false);
+
+        if (audioSourceTransformacao != null)
+            audioSourceTransformacao.Stop();
     }
 }

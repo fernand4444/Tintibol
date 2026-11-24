@@ -99,6 +99,7 @@
     <Compile Include="Assets\Animações\Curcene\PularCutscene.cs" />
     <Compile Include="Assets\Códigos\GeradorBolhas.cs" />
     <Compile Include="Assets\audios\Estaca.cs" />
+    <Compile Include="Assets\Códigos\AudioTornado.cs" />
     <Compile Include="Assets\audios\EfeitoDano.cs" />
     <Compile Include="Assets\Códigos\ChaoEletrico.cs" />
     <Compile Include="Assets\Códigos\coracao.cs" />
