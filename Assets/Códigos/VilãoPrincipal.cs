@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using TMPro;
 
 public class Vidadovilao : MonoBehaviour
 {
@@ -26,6 +27,23 @@ public class Vidadovilao : MonoBehaviour
     public string parametroVolumeVilao = "VolumeVilao";
 
     private AudioSource audioSourceVilao;
+
+    [Header("Áudio ao Morrer")]
+    public AudioClip audioMorteVilao;
+
+    [Range(0f, 1f)]
+    public float volumeAudioMorte = 1f;
+
+    [Header("Contagem ao Morrer")]
+    public TextMeshProUGUI textoContagem;
+
+    [Header("Áudio da Contagem")]
+    public AudioClip audioContagem;
+
+    [Range(0f, 1f)]
+    public float volumeAudioContagem = 1f;
+
+    private AudioSource audioSourceContagem;
 
     [Header("Invulnerabilidade")]
     private float _lastDamageTime = -Mathf.Infinity;
@@ -84,7 +102,9 @@ public class Vidadovilao : MonoBehaviour
     [Header("Teletransporte do Jogador")]
     public GameObject jogador;
     public Transform pontoDeTeletransporte;
-    public float tempoParaTeletransportar = 5f;
+
+    // Contagem fixa de 3 segundos.
+    public float tempoParaTeletransportar = 3f;
 
     private void Awake()
     {
@@ -104,6 +124,12 @@ public class Vidadovilao : MonoBehaviour
         audioSourceVilao.clip = audioVilao;
         audioSourceVilao.outputAudioMixerGroup = grupoAudioVilao;
 
+        // AudioSource separado para a contagem.
+        audioSourceContagem = gameObject.AddComponent<AudioSource>();
+        audioSourceContagem.playOnAwake = false;
+        audioSourceContagem.loop = false;
+        audioSourceContagem.spatialBlend = 0f;
+
         spriteRenderers =
             GetComponentsInChildren<SpriteRenderer>(true);
 
@@ -121,6 +147,9 @@ public class Vidadovilao : MonoBehaviour
         _currentLP = maxLP;
 
         Initialize(maxLP, _currentLP);
+
+        if (textoContagem != null)
+            textoContagem.gameObject.SetActive(false);
 
         if (shouldFlip)
             _originalLocalScaleX = transform.localScale.x;
@@ -164,7 +193,6 @@ public class Vidadovilao : MonoBehaviour
                 Mathf.Clamp01(volumeAudioVilao);
         }
 
-        // Verifica se o áudio da transformação está ativo.
         if (TeletransporteVilao.TransformacaoAtiva)
         {
             if (audioSourceVilao.isPlaying)
@@ -173,7 +201,6 @@ public class Vidadovilao : MonoBehaviour
             return;
         }
 
-        // Quando a transformação termina, o áudio do vilão retorna.
         if (audioVilao != null && !audioSourceVilao.isPlaying)
         {
             audioSourceVilao.clip = audioVilao;
@@ -280,7 +307,52 @@ public class Vidadovilao : MonoBehaviour
 
     private IEnumerator AguardarTeletransporte()
     {
-        yield return new WaitForSeconds(tempoParaTeletransportar);
+        // Congela o jogo.
+        Time.timeScale = 0f;
+
+        // Mostra a contagem.
+        if (textoContagem != null)
+        {
+            textoContagem.gameObject.SetActive(true);
+            textoContagem.text = "3";
+        }
+
+        // Toca o áudio da morte.
+        if (audioMorteVilao != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                audioMorteVilao,
+                transform.position,
+                volumeAudioMorte
+            );
+        }
+
+        // Toca o áudio da contagem.
+        if (audioContagem != null && audioSourceContagem != null)
+        {
+            audioSourceContagem.PlayOneShot(
+                audioContagem,
+                volumeAudioContagem
+            );
+        }
+
+        // Contagem exata de 3 segundos.
+        for (int numero = 3; numero >= 1; numero--)
+        {
+            if (textoContagem != null)
+                textoContagem.text = numero.ToString();
+
+            yield return new WaitForSecondsRealtime(1f);
+        }
+
+        if (textoContagem != null)
+            textoContagem.gameObject.SetActive(false);
+
+        if (audioSourceContagem != null)
+            audioSourceContagem.Stop();
+
+        // Descongela o jogo.
+        Time.timeScale = 1f;
 
         TeletransportarJogador();
 
